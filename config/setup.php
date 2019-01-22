@@ -2,12 +2,9 @@
 
 include ('database.php');
 
-
-$table = "users";
-
 //CREATE DATABASE
 try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
+    $pdo = new PDO("mysql:host=$host;charset=$charset", $DB_USER, $DB_PASSWORD, $options);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
@@ -15,7 +12,7 @@ try {
 
 //CREATE TABLE USER
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $DB_USER, $DB_PASSWORD, $options);
+    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
@@ -32,4 +29,23 @@ try {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-   $pdo = null;
+
+//CREATE TABLE comments
+try {
+    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+    try {
+        $sql = "CREATE TABLE `comments` (
+            `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `id_photo` INT NOT NULL,
+            `comments` VARCHAR(250) NOT NULL,
+            `username` VARCHAR(50) NOT NULL,
+          )";
+        $pdo->exec($sql);
+        print("Created `comments` Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
