@@ -19,9 +19,9 @@ try {
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `users` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            `username` VARCHAR(50) NOT NULL,
-            `mail` VARCHAR(100) NOT NULL,
+            `login` VARCHAR(50) NOT NULL,
             `password` VARCHAR(255) NOT NULL,
+            `mail` VARCHAR(100) NOT NULL,
             `verified` VARCHAR(1) NOT NULL DEFAULT 'N'
           )";
         $pdo->exec($sql);
@@ -41,7 +41,7 @@ try {
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `id_photo` INT NOT NULL,
             `comments` VARCHAR(250) NOT NULL,
-            `username` VARCHAR(50) NOT NULL
+            `login` VARCHAR(50) NOT NULL
           )";
         $pdo->exec($sql);
         print("Created `comments` Table.\n");
@@ -59,7 +59,7 @@ try {
         $sql = "CREATE TABLE IF NOT EXISTS `photos` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `photo` VARBINARY(25000) NOT NULL,
-            `username` VARCHAR(250) NOT NULL,
+            `login` VARCHAR(250) NOT NULL,
             `date` DATE NOT NULL
           )";
         $pdo->exec($sql);
