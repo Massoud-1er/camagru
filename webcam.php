@@ -12,8 +12,9 @@
 </head>
   
 <body>
-    <button id="deco">se déconnecter</button>
-    <div id="header"></div>
+<div id="top_bar">
+    <?php include ('top_bar.php');?>
+</div>
     <br/>
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
