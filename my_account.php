@@ -2,12 +2,15 @@
 session_start();
 
 print_r($_SESSION);
+$allowed = array("mail", "password", "photos", "forgot", "notif");
+
+print_r($_POST);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Our shop</title>
+    <title>Mon compte</title>
     <link rel = "stylesheet"
     type = "text/css"
     href = "style.css" />
@@ -19,6 +22,13 @@ print_r($_SESSION);
     <div id="full_body">
         
         <div id="middle-col">
+        <?php if (!$_POST['change']) : ?>
+        <?php include ('account.html');?>
+        <?php endif;?>
+        <?php if (in_array($_POST['change'], $allowed)) : ?>
+        <?php include("change/change_".$_POST['change'].".html");?>
+        <?php endif;?>
+            <!-- <?php include ('change_mail.html');?> -->
                                 </div>
         <!-- <div id="left-col">
             <a href="#">Categorie 1</a>

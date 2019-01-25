@@ -22,6 +22,8 @@
     </div>
     <div id="right-rec"></div>
     <button id="pic" onclick="test()">prendre photo</button>
+
+    
     <script src="webcam.js"></script>
 </body>
 </html>

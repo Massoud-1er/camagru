@@ -1,13 +1,18 @@
 <?php
+session_start();
 echo '<p id= "welcome">Bienvenue !</p>
     <div class="header">
                             <ul class="menu">
                             <li class="dropdown"><span>Mon compte</span>
-  <ul class="features-menu">
-      <li><a href="login.html">Se connecter</a></li>
-      <li><a href="acc_user.html">Voir mon compte</a></li>
+  <ul class="features-menu">' ?>
+      <?php if ($_SESSION['logged_on_user'] != 1) : ?>
+      <li><a href="login.html">Se connecter</a></li>'
+      <?php endif;?>
+      <?php echo '<li><a href="my_account.php">Voir mon compte</a></li>' ?>
+      <?php if ($_SESSION['logged_on_user'] == 1) : ?>
       <li><a href="user/logout_user.php">Se deconnecter</a></li>
-  </ul>
+      <?php endif;?>
+ <?php echo '</ul>
 </li>
 <li class="dropdown"><span>Photos</span>
   <ul class="features-menu">

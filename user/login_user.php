@@ -1,12 +1,6 @@
 <?php
-include('../config/database.php');
-
-    //connection to SQL through PDO
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=$charset", $DB_USER, $DB_PASSWORD, $options);
-    } catch (\PDOException $e) {
-        throw new \PDOException($e->getMessage(), (int)$e->getCode());
-    }
+//connection to SQL through PDO
+include('../config/connection.php');
     if ($_POST['submit'] == "Se connecter" && $_POST["login"] && $_POST["password"]) {
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {
@@ -22,6 +16,7 @@ include('../config/database.php');
             //CREATE a session
             $_SESSION['login'] = $login;
             $_SESSION["password"] = $password;
+            $_SESSION['logged_on_user'] = 1;
             echo "User session connected\n";
             $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND verified='Y'");
             $query->execute();

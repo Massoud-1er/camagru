@@ -1,13 +1,7 @@
 <?php
 
-include('../config/database.php');
-
 //connection to SQL through PDO
-try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
+include('../config/connection.php');
     // check if Post is correct
     if ($_POST["submit"] == "Modifier son mot de passe" && $_POST["login"] && $_POST["newpw"] && $_POST["oldpw"]) {
         // create var of user, oldpw and newpw
