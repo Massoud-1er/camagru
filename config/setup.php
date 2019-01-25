@@ -1,21 +1,26 @@
 <?php
 
-include ('database.php');
-
 //CREATE DATABASE
-try {
-    $pdo = new PDO("mysql:host=$host;charset=$charset", $DB_USER, $DB_PASSWORD, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+function create_db(){
+include ('database.php');
+    try {
+        $pdo = new PDO("mysql:host=$host;charset=$charset", $DB_USER, $DB_PASSWORD, $options);
+    } catch (\PDOException $e) {
+        throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    }
+    try {
+        $sql = "CREATE DATABASE IF NOT EXISTS `$db`";
+        $pdo->exec($sql);
+        print("Created db.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
 }
-    $pdo->query("CREATE DATABASE IF NOT EXISTS `$db`");
 
 //CREATE TABLE USER
-try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
+function table_user(){
+include ('connection.php');
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `users` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -25,17 +30,15 @@ try {
             `verified` VARCHAR(1) NOT NULL DEFAULT 'N'
           )";
         $pdo->exec($sql);
-        print("Created $table Table.\n");
+        print("Created user Table.\n");
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-
-//CREATE TABLE comments
-try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    $pdo = null;
 }
+//CREATE TABLE comments
+function table_comments(){
+    include('connection.php');
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `comments` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,13 +51,12 @@ try {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    
-//CREATE TABLE photos
-try {
-    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    $pdo = null;
 }
+
+//CREATE TABLE photos
+function table_photos(){
+    include('connection.php');
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `photos` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -68,3 +70,10 @@ try {
         echo $e->getMessage();
     }
     $pdo = null;
+}
+
+create_db();
+table_user();
+table_comments();
+table_photos();
+?>
