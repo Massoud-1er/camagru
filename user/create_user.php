@@ -32,12 +32,12 @@ function create_user(){
         if ($check == null && $check2 == null) {
             // create user on SQL line
             $query = $pdo->prepare("INSERT INTO users (login, password, mail, hash)
-								VALUES ('$login', PASSWORD('$password'), '$mail', $hash)");
+								VALUES ('$login', PASSWORD('$password'), '$mail', '$hash')");
             try {
                 // apply SQL line on database
                 $query->execute();
                 echo("L'utilisateur a bien été crée. Vous allez recevoir un email de confirmation à l'adresse indiquee\n");
-                verify_user($email, $hash);
+                verify_user($mail, $hash);
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
