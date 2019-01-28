@@ -9,7 +9,7 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     $pct /= 100; 
     $w = imagesx( $src_im ); 
     $h = imagesy( $src_im ); 
-    imagealphablending( $src_im, false ); 
+    imagealphablending( $src_im, false );
     $minalpha = 127; 
     for( $x = 0; $x < $w; $x++ ) 
     for( $y = 0; $y < $h; $y++ ){ 
@@ -34,7 +34,14 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
-$image = imagecreatefrompng("face.png");
+function resizeImage($img)
+{
+
+}
+
+$im = imagecreatefrompng("face.png");
+$image = imagescale($im, 500, 375);
+
 $filter = imagecreatefrompng("smiley.png");
 imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
 imagesavealpha($image, true); 

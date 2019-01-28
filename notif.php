@@ -8,7 +8,7 @@ $header.= "Reply-to: \"mass\" <monsieurmassoud@gmail.fr>"."\n";
 $header.= "MIME-Version: 1.0"."\n";
 $sub = "fricouille";
 
-mail("monsieurmassoud@gmail.com", $sub, $msg, $header);
+mail("jdesclercs@gmail.com", $sub, $msg, $header);
 
 
 ?>
