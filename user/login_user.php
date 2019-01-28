@@ -1,25 +1,29 @@
 <?php
 //connection to SQL through PDO
 include('../config/connection.php');
+session_start();
+
     if ($_POST['submit'] == "Se connecter" && $_POST["login"] && $_POST["password"]) {
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {
+            print_r($_POST); 
             // Prepare and query SQL for check
-            $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND password=PASSWORD('$password')");
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password')");
             $query->execute();
             $check = $query->fetchAll();
+            print_r($check);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
         if ($check) {
-            session_start();
+            
             //CREATE a session
             $_SESSION['login'] = $login;
             $_SESSION["password"] = $password;
             $_SESSION['logged_on_user'] = 1;
             echo "User session connected\n";
-            $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND verified='Y'");
-            $query->execute();
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = ? AND verified = ?");
+            $query->execute([$login, 'Y']);
             $check = $query->fetchAll();
             if ($check) {
                 $_SESSION['verified'] = 1;
@@ -32,3 +36,4 @@ include('../config/connection.php');
         }
     }
     $pdo = null;
+?>

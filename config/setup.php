@@ -74,8 +74,26 @@ function table_photos(){
     $pdo = null;
 }
 
+function table_reset_pw()
+{
+    include('connection.php');
+    try {
+        $sql = "CREATE TABLE `password_reset` (
+            `mail` varchar(250) NOT NULL,
+            `key` varchar(250) NOT NULL,
+            `expDate` datetime NOT NULL
+          )";
+        $pdo->exec($sql);
+        print("Created `password_reset` Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
+}
+
 create_db();
 table_user();
 table_comments();
 table_photos();
+table_reset_pw();
 ?>

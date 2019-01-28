@@ -8,8 +8,8 @@ function change_pw()
     try {
         // Prepare and query SQL for check
         //first check for login
-        $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
-        $query->execute();
+        $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
+        $query->execute([$login]);
         $check = $query->fetchAll();
         //second check for passwd
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND password=PASSWORD('$oldpw')");
@@ -114,9 +114,61 @@ function change_notif()
         echo("Cet utilisateur n'existe pas.\n");
     } elseif (!$check2) {
         echo("Le mot de passe ne correspond pas a cet utilisateur.\n");
-    }
-    elseif (!$check3) {
+    } elseif (!$check3) {
         echo("Les notifications sont deja desactivees.\n");
+    }
+    $pdo = null;
+}
+
+function reset_passwd()
+{
+    include('../config/connection.php');
+    include('mail_reset.php');
+    // create var of user, oldpw and newpw
+    list($login, $mail) = array($_POST["login"], $_POST["mail"]);
+    try {
+        // Prepare and query SQL for check
+        //first check for login
+        $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
+        $query->execute();
+        $check = $query->fetchAll();
+        //second check for mail
+        $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND mail='$mail'");
+        $query->execute();
+        $check2 = $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    if ($check && $check2) {
+        // prepare token
+        date_default_timezone_set(UTC);
+        $expFormat = mktime(
+            date("H"),
+            date("i"),
+            date("s"),
+            date("m"),
+            date("d")+1,
+            date("Y")
+            );
+        $expDate = date("Y-m-d H:i:s", $expFormat);
+        $key = md5(2418*2+$email);
+        $addKey = substr(md5(uniqid(rand(), 1)), 3, 10);
+        $key = $key . $addKey;
+        $query = $pdo->prepare("INSERT INTO `password_reset` (`mail`, `key`, `expDate`)
+        VALUES ('$mail', '$key', '$expDate');");
+        try {
+            $query->execute();
+            mail_reset($key, $mail);
+            // header("Location: ../index.php");
+
+            echo("Un email pour reinitialiser votre mot de passe vous a bien ete envoye\n");
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    } elseif (!$check) {
+        echo("Cet utilisateur n'existe pas.\n");
+    } elseif (!$check2) {
+        echo("L'adresse e-mail ne correspond pas.\n");
     }
     $pdo = null;
 }
@@ -128,4 +180,6 @@ if ($_POST["submit"] == "Modifier son mot de passe" && $_POST["login"] && $_POST
 } elseif ($_POST["submit"] == "Ne plus recevoir les notifications par mail" && $_POST["login"] && $_POST["mail"]) {
     change_notif();
 }
-?>
+else if ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]){
+    reset_passwd();
+}
