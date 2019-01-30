@@ -62,7 +62,7 @@ function table_photos(){
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `photos` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            `photo` VARBINARY(25000) NOT NULL,
+            `photo` blob NOT NULL,
             `login` VARCHAR(250) NOT NULL,
             `date` DATE NOT NULL
           )";

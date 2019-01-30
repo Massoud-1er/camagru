@@ -29,6 +29,8 @@ print_r($_SESSION);
     </div> -->
                                 </div>         
     <div id="right-col">
+        <!-- montage passé -->
+        <div class="montageDiv"><img class="montage" src="uploads/leonard.jpg"></div>
     </div> 
     <div id="footer"></div>
     

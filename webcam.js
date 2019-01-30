@@ -12,7 +12,8 @@ console.log("Something went wrong!");
 
 function test() {
     var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d', { antialias: false, depth: false });
-    ctx.drawImage(canvas,100,100);
+    var ctx = canvas.getContext('2d');
+    var img = document.getElementById('videoElement');
+    ctx.drawImage(img, 0, 0, 1000, 1400, 0, 0, 500, 375);
     console.log(ctx);
 }

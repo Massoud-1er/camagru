@@ -18,12 +18,16 @@
     <br/>
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
-        <!-- <canvas id="canvas" width="300" height="300"></canvas> -->
     </div>
     <div id="right-rec"></div>
-    <button id="pic" onclick="test()">prendre photo</button>
 
-    
+    <button id="pic" onclick="test()">prendre photo</button>
+    <form action="photo/add_montage.php" method="post" enctype="multipart/form-data">
+        Selectionner une image depuis votre ordinateur:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit" id="insert">
+    </form>
+    <canvas id="canvas"></canvas>
     <script src="webcam.js"></script>
 </body>
 </html>
