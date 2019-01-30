@@ -22,10 +22,10 @@
     <div id="right-rec"></div>
 
     <button id="pic" onclick="test()">prendre photo</button>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="photo/add_montage.php" method="post" enctype="multipart/form-data">
         Selectionner une image depuis votre ordinateur:
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
+        <input type="submit" value="Upload Image" name="submit" id="insert">
     </form>
     <canvas id="canvas"></canvas>
     <script src="webcam.js"></script>

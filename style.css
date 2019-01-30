@@ -283,7 +283,12 @@ h1 {
     width: 11vw;
     height: 9vw;
 }
-
+.img_gal {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50vw;
+    height: 37vw; 
+}
 
 
 /* 

@@ -34,11 +34,6 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
-function resizeImage($img)
-{
-
-}
-
 $im = imagecreatefrompng("face.png");
 $image = imagescale($im, 500, 375);
 
