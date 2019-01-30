@@ -16,7 +16,7 @@ echo '<p id= "welcome">Bienvenue !</p>
 </li>
 <li class="dropdown"><span>Photos</span>
   <ul class="features-menu">
-  <li><a href="galerie.html">Galerie</a></li>
+  <li><a href="galerie.php">Galerie</a></li>
   <li><a href="webcam.php">Webcam</a></li>
   </ul>
 </li>
