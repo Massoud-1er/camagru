@@ -72,8 +72,6 @@ if (isset($_POST["email"]) && isset($_POST["action"]) &&
     if ($error!="") {
         echo "<div class='error'>".$error."</div><br />";
     } else {
-        $pass1 = md5($pass1);
-
         $query = $pdo->prepare("UPDATE users
 SET password=PASSWORD('$pass1')
 WHERE mail= ?");
