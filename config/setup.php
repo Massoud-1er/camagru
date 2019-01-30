@@ -45,7 +45,7 @@ function table_comments(){
         $sql = "CREATE TABLE IF NOT EXISTS `comments` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `id_photo` INT NOT NULL,
-            `comments` VARCHAR(250) NOT NULL,
+            `comments` VARCHAR(4000) NOT NULL,
             `login` VARCHAR(50) NOT NULL
           )";
         $pdo->exec($sql);
@@ -64,7 +64,8 @@ function table_photos(){
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `photo` blob NOT NULL,
             `login` VARCHAR(250) NOT NULL,
-            `date` DATE NOT NULL
+            `date` DATE NOT NULL,
+            `like` INT NOT NULL
           )";
         $pdo->exec($sql);
         print("Created `photos` Table.\n");

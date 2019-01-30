@@ -16,7 +16,10 @@ print_r($_SESSION);
     <div id="top_bar">
     <?php include ('top_bar.php');?>
 </div>
-    <div id="full_body">
+<div id="full_body">
+    <?php include ('comments/like.html');?>
+    <?php include ('comments/write_comment.html');?>
+
         
         <div id="middle-col">
                                 </div>

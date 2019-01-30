@@ -25,7 +25,7 @@ h1 {
 .header {
     position: absolute;
     height:5vh;
-      width: 95%;
+      width: 95vw;
     padding-top:1.5vh;
       margin-top:4.5vh;
       background: #D6E9FE;
@@ -64,6 +64,7 @@ h1 {
     width: 11vw;
     height: 70vh;
 }
+
 
 /*
 **  MENU 
@@ -202,13 +203,17 @@ h1 {
 }
 
 
+/* like & com */
 
+#like {
+    height:4vh;
+    width: 1.2vw;
+}
 
-
-
-
-
-
+#commentbox {
+    width:15vw;
+    height:10vh;
+}
 
 
 
