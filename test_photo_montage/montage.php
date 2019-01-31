@@ -1,5 +1,3 @@
-#!/usr/bin/php
-
 <?php
 
 function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 
@@ -34,12 +32,13 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
-$im = imagecreatefrompng("face.png");
+//$im = imagecreatefrompng("test_photo_montage/face.png");
+$im = $files["tmp_name"];
 $image = imagescale($im, 500, 375);
 
-$filter = imagecreatefrompng("smiley.png");
+$filter = imagecreatefrompng("test_photo_montage/smiley.png");
 imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
-imagesavealpha($image, true); 
-imagepng($image, 'toto.png');
+imagesavealpha($image, true);
+imagepng($image, 'test_photo_montage/tttt.png');
 
 ?>
