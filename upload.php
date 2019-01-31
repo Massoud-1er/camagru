@@ -35,10 +35,24 @@ if ($uploadOk == 0) {
     //echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    print_r($_FILES["fileToUpload"]["name"]);
+    print_r($_FILES["fileToUpload"]);
+
+    $files = $_FILES["fileToUpload"];
+    $type = $files['type'];
+	$size = $files['size'];
+	$imgPath = $files['tmp_name'];
+ 
+	
+	header('http/1.1 200 ok');
+	header('Content-Type:'.$type);
+	header('Content-Length: ' . $size);
+    echo "<div><img src=\"".readfile($files["tmp_name"])."\"></div>";
+//    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
+    
+  //  } else {
         //echo "Sorry, there was an error uploading your file.";
     }
-}
+//}
 ?>
