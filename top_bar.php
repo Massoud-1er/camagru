@@ -21,5 +21,5 @@ echo '<p id= "welcome">Bienvenue !</p>
   </ul>
 </li>
 </ul>
-                        </div>';
+</div>';
 ?>

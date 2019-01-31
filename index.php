@@ -19,7 +19,6 @@ print_r($_SESSION);
 <div id="full_body">
     <?php include ('comments/like.html');?>
     <?php include ('comments/write_comment.html');?>
-
         
         <div id="middle-col">
                                 </div>
