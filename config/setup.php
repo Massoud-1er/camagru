@@ -95,7 +95,7 @@ function table_reset_pw()
 {
     include('connection.php');
     try {
-        $sql = "CREATE TABLE `password_reset` (
+        $sql = "CREATE TABLE IF NOT EXISTS `password_reset` (
             `mail` varchar(250) NOT NULL,
             `key` varchar(250) NOT NULL,
             `expDate` datetime NOT NULL

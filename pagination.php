@@ -21,22 +21,17 @@ if ($total) {
         'min_range' => 1,
     ),
 )));
-    
-    // Calculate the offset for the query
+
     $offset = ($page - 1)  * $limit;
 
-
-    // Some information to display to the user
     $start = $offset + 1;
+
     $end = min(($offset + $limit), $total);
 
-    // The "back" link
     $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
 
-    // The "forward" link
     $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
 
-    // Display the paging information
     echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
 
     $query = $pdo->prepare('
@@ -58,14 +53,15 @@ OFFSET
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    // Do we have any results?
     if ($query->rowCount() > 0) {
-        // Define how we want to fetch the results
-        // Display the results
         foreach ($check as $k => $val) {
             echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
             include('comments/write_comment.html');
-            include('comments/like.html');
+            include('comments/get_likes.php');
+            echo get_likes($val['id']);
+            echo '<form class="login-form" action="comments/com_and_like.php" method="POST">
+            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
+        </form>';
         }
     } else {
         echo '<p>No results could be displayed.</p>';

@@ -29,6 +29,7 @@ print_r($_POST);
         <?php include("change/change_".$_POST['change'].".html");?>
         <?php endif;?>
             <!-- <?php include ('change_mail.html');?> -->
+            <div><a href="my_pics.php">Voir mes photos</a></div>
                                 </div>
         <!-- <div id="left-col">
             <a href="#">Categorie 1</a>
