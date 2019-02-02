@@ -1,7 +1,7 @@
 <?php
 function save_img()
 {
-    include('../config/connection.php');
+    include('config/connection.php');
     session_start();
     if(isset($_POST["submit"]))  
     {

@@ -42,7 +42,7 @@ if ($uploadOk == 0) {
 	$imgPath = $files['tmp_name'];
     $img = base64_encode(file_get_contents($imgPath));
 	
-    echo "<div><img src='data:image/$type;base64,$img'></div>";
-    include('test_photo_montage/montage.php');
+    // echo "<div><img src='data:image/$type;base64,$img'></div>";
+    // include('test_photo_montage/montage.php');
 }
 ?>

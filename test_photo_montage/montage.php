@@ -32,15 +32,16 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
-//$im = imagecreatefrompng("test_photo_montage/face.png");
-// $im = $files["tmp_name"];
-$im = imagecreatefromjpeg($_FILES['fileToUpload']['tmp_name']);
-$image = imagescale($im, 500, 375);
 
-$filter = imagecreatefrompng("test_photo_montage/smiley.png");
-imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
-imagesavealpha($image, true);
-imagewbmp($image);
-imagepng($image, 'test_photo_montage/tttt.png');
+    $im = imagecreatefromjpeg($_FILES['fileToUpload']['tmp_name']);
+    $image = imagescale($im, 500, 375);
+
+    $filter = imagecreatefrompng("test_photo_montage/smiley.png");
+    imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
+    imagesavealpha($image, true);
+
+    echo "<div><h1>dededede</h1></div>";
+//    imagejpeg($image);
+    imagepng($image, 'test_photo_montage/tgt.png');
 
 ?>
