@@ -45,7 +45,7 @@ function table_comments(){
         $sql = "CREATE TABLE IF NOT EXISTS `comments` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `id_photo` INT NOT NULL,
-            `comments` VARCHAR(250) NOT NULL,
+            `comments` VARCHAR(4000) NOT NULL,
             `login` VARCHAR(50) NOT NULL
           )";
         $pdo->exec($sql);
@@ -56,7 +56,23 @@ function table_comments(){
     $pdo = null;
 }
 
-//CREATE TABLE photos
+function table_likes(){
+    include('connection.php');
+    try {
+        $sql = "CREATE TABLE IF NOT EXISTS `likes` (
+            `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `id_photo` INT NOT NULL,
+            `login` VARCHAR(250) NOT NULL,
+            `like` BIT NOT NULL
+          )";
+        $pdo->exec($sql);
+        print("Created `photos` Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
+}
+
 function table_photos(){
     include('connection.php');
     try {
@@ -64,7 +80,8 @@ function table_photos(){
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `photo` blob NOT NULL,
             `login` VARCHAR(250) NOT NULL,
-            `date` DATE NOT NULL
+            `date` DATE NOT NULL,
+            `like` INT NOT NULL
           )";
         $pdo->exec($sql);
         print("Created `photos` Table.\n");
@@ -78,7 +95,7 @@ function table_reset_pw()
 {
     include('connection.php');
     try {
-        $sql = "CREATE TABLE `password_reset` (
+        $sql = "CREATE TABLE IF NOT EXISTS `password_reset` (
             `mail` varchar(250) NOT NULL,
             `key` varchar(250) NOT NULL,
             `expDate` datetime NOT NULL
@@ -94,6 +111,7 @@ function table_reset_pw()
 create_db();
 table_user();
 table_comments();
+table_likes();
 table_photos();
 table_reset_pw();
 ?>

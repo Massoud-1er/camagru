@@ -25,7 +25,7 @@ h1 {
 .header {
     position: absolute;
     height:5vh;
-      width: 95%;
+      width: 95vw;
     padding-top:1.5vh;
       margin-top:4.5vh;
       background: #D6E9FE;
@@ -59,11 +59,12 @@ h1 {
 #right-col {
     position: absolute;
     background: white;
-    margin-left: 86.5vw;
+    margin-left: 84vw;
     margin-top: -70vh;
     width: 11vw;
     height: 70vh;
 }
+
 
 /*
 **  MENU 
@@ -202,13 +203,17 @@ h1 {
 }
 
 
+/* like & com */
 
+#like {
+    height:2.5vh;
+    width: 1.2vw;
+}
 
-
-
-
-
-
+#commentbox {
+    width:15vw;
+    height:10vh;
+}
 
 
 
@@ -250,13 +255,6 @@ h1 {
     background-color: #666;
     position: relative;
     float: right;
-}
-.photo {
-    margin-left: auto;
-    margin-right: auto;
-    width: 90vw;
-    height: 60vw;
-    background-color: antiquewhite;
 }
 #deco {
     width: 11vw;
