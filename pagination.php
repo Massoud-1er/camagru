@@ -55,7 +55,7 @@ OFFSET
     }
     if ($query->rowCount() > 0) {
         foreach ($check as $k => $val) {
-            echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
+            echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'"></p>';
             include('comments/write_comment.html');
             include('comments/get_likes.php');
             echo get_likes($val['id']);

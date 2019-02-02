@@ -38,9 +38,9 @@ print_r($_POST);
             <a href="#">Categorie 4</a>
             <a href="#">Categorie 5</a>
     </div> -->
-                                </div>         
     <div id="right-col">
     </div> 
+                                </div>         
     <div id="footer"></div>
     
 

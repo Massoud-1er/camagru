@@ -6,8 +6,9 @@ body {
     background-color: white;
     max-width: 100%;
     max-height: 100%;
-    background-image: url('https://www.etoffe.com/29338/papier-peint-medina-thibaut.jpg');
-    }
+    background-image: url('https://www.laverdure.fr/img/c/3468.jpg');
+    background-size: 100%;    
+}
 
 h1 {
     text-align: center;
@@ -21,15 +22,6 @@ h1 {
   width: 95vw;
   height: 11.5vh;
 }
-
-.header {
-    position: absolute;
-    height:5vh;
-      width: 95vw;
-    padding-top:1.5vh;
-      margin-top:4.5vh;
-      background: #D6E9FE;
-  }
 
 #footer {
     background: white;
@@ -65,6 +57,12 @@ h1 {
     height: 70vh;
 }
 
+#copyright {
+    text-align: right;
+    margin-right:5vw;
+    margin-top:0.5vh;
+    font-style: italic;
+}
 
 /*
 **  MENU 
@@ -76,12 +74,21 @@ h1 {
     box-sizing: border-box;
   }
   
+  .header {
+    position: absolute;
+    height:5vh;
+      width: 95vw;
+    padding-top:1.5vh;
+      margin-top:4.5vh;
+      background: rgb(100, 24, 24);
+  }
+
   body {
       height: 12vh;
       font-size: 2vh;
       font-size: 1vw;
       font-family: sans-serif;
-      color: #5D6063;
+      color: 0;
   }
   
   a{
@@ -111,7 +118,7 @@ h1 {
   .dropdown:hover .features-menu{
       display: flex; 
       flex-direction: column;
-      background: #B2D6FF;
+      background: rgb(100, 24, 24);
       border-radius: 5px;
       padding-top: 4.5vh;
       position: absolute;
@@ -214,10 +221,6 @@ h1 {
     width:15vw;
     height:10vh;
 }
-
-
-
-
 
 
 /* A CHECKER */
