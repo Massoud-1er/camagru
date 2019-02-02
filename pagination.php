@@ -2,7 +2,6 @@
 
 include('config/connection.php');
 try {
-    
 $query = $pdo->prepare("SELECT
 COUNT(*)
 FROM
@@ -12,19 +11,20 @@ $total = $query->fetchAll();
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+
 if ($total) {
     $limit = 5;
-    $pages = ceil($total / $limit);
-
+    $pages = ceil($total[0]['COUNT(*)'] / $limit);
     $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
     'options' => array(
         'default'   => 1,
         'min_range' => 1,
     ),
 )));
-
+    
     // Calculate the offset for the query
     $offset = ($page - 1)  * $limit;
+
 
     // Some information to display to the user
     $start = $offset + 1;
@@ -43,9 +43,9 @@ if ($total) {
 SELECT
     *
 FROM
-    table
+    `photos`
 ORDER BY
-    name
+    date
 LIMIT
     :limit
 OFFSET
@@ -54,19 +54,18 @@ OFFSET
     $query->bindParam(':offset', $offset, PDO::PARAM_INT);
     try {
         $query->execute();
+        $check = $query->fetchAll();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-
     // Do we have any results?
     if ($query->rowCount() > 0) {
         // Define how we want to fetch the results
-        $query->setFetchMode(PDO::FETCH_ASSOC);
-        $iterator = new IteratorIterator($query);
-
         // Display the results
-        foreach ($iterator as $row) {
-            echo '<p>', $row['name'], '</p>';
+        foreach ($check as $k => $val) {
+            echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
+            include('comments/write_comment.html');
+            include('comments/like.html');
         }
     } else {
         echo '<p>No results could be displayed.</p>';

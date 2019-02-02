@@ -56,7 +56,23 @@ function table_comments(){
     $pdo = null;
 }
 
-//CREATE TABLE photos
+function table_likes(){
+    include('connection.php');
+    try {
+        $sql = "CREATE TABLE IF NOT EXISTS `likes` (
+            `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `id_photo` INT NOT NULL,
+            `login` VARCHAR(250) NOT NULL,
+            `like` BIT NOT NULL
+          )";
+        $pdo->exec($sql);
+        print("Created `photos` Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
+}
+
 function table_photos(){
     include('connection.php');
     try {
@@ -95,6 +111,7 @@ function table_reset_pw()
 create_db();
 table_user();
 table_comments();
+table_likes();
 table_photos();
 table_reset_pw();
 ?>

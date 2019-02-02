@@ -13,7 +13,6 @@ session_start();
 </div>
 
     <br/>
-    <!-- <?php include('print_photo_gal.php'); ?> -->
-    <?php include('photo/carousel.php'); ?>
+    <?php include('pagination.php'); ?>
 </body>
 </html>
