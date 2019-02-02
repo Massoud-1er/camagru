@@ -2,7 +2,7 @@
 //connection to SQL through PDO
 include('../config/connection.php');
 session_start();
-
+header("Location: ../index.php");
     if ($_POST['submit'] == "Se connecter" && $_POST["login"] && $_POST["password"]) {
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {

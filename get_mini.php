@@ -10,8 +10,7 @@ try {
 }
 if ($query->rowCount() > 0) {
     foreach ($total as $k => $val) {
-        echo '<div class="montageDiv"><img class ="montage" src="data:image/jpeg;base64,'.base64_encode($val['photo']).'"></div>';
+        echo '<div class="montageDiv"><img class ="montage" src="'.($val['photo']).'"></div>';
     }
 }
-        print_r($total);
 ?>

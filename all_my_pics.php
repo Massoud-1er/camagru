@@ -1,11 +1,12 @@
 <?php
 function all_my_pics($rows)
 {
-    include('comments/get_likes.php');
+    include($_SERVER['HOME'].'comments/get_likes.php');
+
     foreach ($rows as $k => $val) {
-        echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
-        include('comments/write_comment.html');
-        include('comments/like.php');
+        echo '<div class="my_pics"><img class ="montage" src="'.($val['photo']).'"></div>';
+        include($_SERVER['HOME'].'comments/write_comment.html');
+        include($_SERVER['HOME'].'comments/like.html');
         echo 'Nombre de personnes aimant cette photo :'.get_likes($val['id']);
     }
 }

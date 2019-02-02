@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +19,26 @@
     <?php include ('top_bar.php');?>
 </div>
     <br/>
+    <div id="full_body">
+    <div id="middle-col">
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
-    <div id="right-rec"></div>
-
     <button id="pic" onclick="test()">prendre photo</button>
     <form action="" method="post" enctype="multipart/form-data">
-        Selectionner une image depuis votre ordinateur:
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit" id="insert">
+    Selectionner une image depuis votre ordinateur:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit" id="insert">
     </form>
     <canvas id="canvas"></canvas>
-    <script src="webcam.js"></script>
+</div> 
+    <div id="right-col">
+        <?php include('get_mini.php');?>
+</div>
+
+</div>
+<?php include('footer.php'); ?>
+<script src="webcam.js"></script>
 </body>
 </html>
 

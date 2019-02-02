@@ -20,7 +20,6 @@ print_r($_SESSION);
     <div id="middle-col">
             <?php include ('comments/like.html');?>
             <?php include ('comments/write_comment.html');?>
-                
                                 </div>
     <div id="right-col">
         <?php include('get_mini.php');?>

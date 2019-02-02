@@ -57,6 +57,8 @@ h1 {
     height: 70vh;
 }
 
+
+
 #copyright {
     text-align: right;
     margin-right:5vw;
@@ -166,8 +168,6 @@ h1 {
 	margin: auto;
     padding: 45px;
     text-align: center;
-    border-style: solid;
-    border-width: 0.5vmin;
 }
 
 .form input {
@@ -253,14 +253,7 @@ h1 {
     background-color: blanchedalmond;
     margin-top: 500px;
 }
-#right-rec {
-    width: 250px;
-    height: 550px;
-    border-radius: 30px;
-    background-color: #666;
-    position: relative;
-    float: right;
-}
+
 #deco {
     width: 11vw;
     height: 4vh;
@@ -282,9 +275,8 @@ h1 {
     height: 7.5vw;
 }
 .montageDiv {
-    position: absolute;
     width: 11vw;
-    height: 9vw;
+    height: 14vh;
 }
 .img_gal {
     margin-left: auto;
@@ -303,3 +295,27 @@ h1 {
     width: 11vw;
     height: 70vh;
 } */
+
+
+
+.my_pics {
+    display:inline-block;
+    vertical-align: top;
+    width: 11vw;
+    height: 14vh;   
+}
+
+.galerie {
+    position:float;
+    margin-left:1vw;
+    vertical-align: top;
+    width: 15vw;
+    height: 20vh;   
+    vertical-align: top;
+}
+.img_galerie {
+    position: float;
+    margin-top: 1vh;
+    width: 14vw;
+    height: 15vh;
+}

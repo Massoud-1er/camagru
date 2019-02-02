@@ -1,5 +1,4 @@
 <?php
-session_start();
 echo '<p id= "welcome">Bienvenue !</p>
     <div class="header">
                             <ul class="menu">

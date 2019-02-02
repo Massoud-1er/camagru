@@ -66,7 +66,7 @@ function table_likes(){
             `like` BIT NOT NULL
           )";
         $pdo->exec($sql);
-        print("Created `photos` Table.\n");
+        print("Created `like` Table.\n");
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
@@ -78,10 +78,10 @@ function table_photos(){
     try {
         $sql = "CREATE TABLE IF NOT EXISTS `photos` (
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            `photo` blob NOT NULL,
+            `photo` VARCHAR(250) NOT NULL,
             `login` VARCHAR(250) NOT NULL,
             `date` DATE NOT NULL,
-            `like` INT NOT NULL
+            `like` INT NOT NULL DEFAULT 0
           )";
         $pdo->exec($sql);
         print("Created `photos` Table.\n");
@@ -108,10 +108,53 @@ function table_reset_pw()
     $pdo = null;
 }
 
+function fill_photos()
+{
+    include('connection.php');
+    date_default_timezone_set(UTC);
+    try {
+        $sql = "INSERT INTO `photos` 
+                (`photo`, `login`, `date`)
+                VALUES
+                ('photo_test/1.jpg', 'admin', NOW()),
+                ('photo_test/2.jpg', 'admin', NOW()),
+                ('photo_test/3.jpg', 'admin', NOW()),
+                ('photo_test/4.jpg', 'admin', NOW()),
+                ('photo_test/5.jpg', 'admin', NOW()),
+                ('photo_test/6.jpg', 'admin', NOW()),
+                ('photo_test/7.jpg', 'admin', NOW()),
+                ('photo_test/8.jpg', 'admin', NOW()),
+                ('photo_test/9.png', 'admin', NOW())";
+        $pdo->exec($sql);
+        print("Filled photos Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
+}
+
+function fill_users()
+{
+    include('connection.php');
+    try {
+        $sql = "INSERT INTO `users` 
+                (`login`, `password`, `mail`, `hash`, `verified`)
+                VALUES
+                ('admin', PASSWORD('admin123'), 'jdesclercs@gmail.com', '0', 'Y')";
+        $pdo->exec($sql);
+        print("Filled users Table.\n");
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $pdo = null;
+}
+
 create_db();
 table_user();
 table_comments();
 table_likes();
 table_photos();
 table_reset_pw();
+fill_photos();
+fill_users();
 ?>
