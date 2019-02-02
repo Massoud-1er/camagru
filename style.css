@@ -165,7 +165,9 @@ h1 {
 	max-width: 360px;
 	margin: auto;
     padding: 45px;
-	text-align: center;
+    text-align: center;
+    border-style: solid;
+    border-width: 0.5vmin;
 }
 
 .form input {
