@@ -1,6 +1,7 @@
 <?php 
 
-include('config/connection.php');
+include_once('comments/get_likes.php');
+include_once('config/connection.php');
 try {
 $query = $pdo->prepare("SELECT
 COUNT(*)
@@ -57,11 +58,21 @@ OFFSET
         echo '<div class="row">';
         foreach ($check as $k => $val) {
             echo '<div class = "col"><img class ="img_galerie" src="'.($val['photo']).'">';
-            include('comments/write_comment.html');
-            include_once('comments/get_likes.php');
+            if ($_SESSION['login']){
             echo '<form action="comments/com_and_like.php" method="POST">
-            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
-        </form></div>';
+            <p>Ajouter un commentaire :</p><input id="commentbox" type="text" name="com"><br>
+            <input type="hidden" name="id" value="'.$val['id'].'">
+            <input type="submit" name="submit" value="Ajouter un commmentaire">
+    </form>';
+    
+            echo '<form action="comments/com_and_like.php" method="POST">
+            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png"></a>
+            <input type="hidden" name="id" value="'.$val['id'].'">
+            <input type="hidden" name="submit" value="like">
+
+        </form>';
+            }
+        echo '</div>';
         }
         echo '</div>';
         echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';

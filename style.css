@@ -35,12 +35,7 @@ h1 {
     margin-top:1.5vh;
     margin-left:2.5vw;
 }
-#left-col {
-    float:left;
-    background: white;
-    width: 10vw;
-    height: 75vh;
-}
+
 
 #middle-col {
     background: white;
@@ -232,6 +227,26 @@ h1 {
     width:50%;
     width:15vw;
     height:10vh;
+}
+
+.comz{
+    float:left;
+    width: 60%;
+}
+.img_com{ 
+    height:100%;
+    width:100%;
+    max-height:66vh;
+}
+.display_com{
+    float:right;
+    width:40%;
+    overflow-y: scroll;
+}
+.one_com {
+    position:relative;
+    margin-left:15vw;
+    width:80%;
 }
 
 

@@ -7,7 +7,7 @@ header("Location: ../index.php");
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {
             // Prepare and query SQL for check
-            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password')");
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password') AND verified = 'Y'");
             $query->execute();
             $check = $query->fetchAll();
         } catch (PDOException $e) {
