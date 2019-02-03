@@ -287,14 +287,7 @@ h1 {
     width: 50vw;
     height: 37vw; 
 }
-
-
-/* 
-#right-col {
-    position: absolute;
-    background: white;
-    margin-left: 86.5vw;
-    margin-top: -70vh;
-    width: 11vw;
-    height: 70vh;
-} */
+.filter {
+    width: 10vw;
+    height: 7.3vw;
+}

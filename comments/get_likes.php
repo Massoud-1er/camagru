@@ -1,7 +1,7 @@
 <?php
 function get_likes($idphoto)
 {
-    include('../config/connection.php');
+    include('config/connection.php');
     try {
         $query = $pdo->prepare("SELECT `like` FROM `likes` WHERE id = ?");
         $query->execute([$idphoto]);

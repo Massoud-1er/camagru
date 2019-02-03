@@ -55,13 +55,15 @@ OFFSET
     }
     if ($query->rowCount() > 0) {
         foreach ($check as $k => $val) {
+            print_r(base64_encode($val['photo']));
+            print_r($check);
             echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
             include('comments/write_comment.html');
-            include('comments/get_likes.php');
-            echo get_likes($val['id']);
-            echo '<form class="login-form" action="comments/com_and_like.php" method="POST">
-            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
-        </form>';
+            // include('comments/get_likes.php');
+            // echo get_likes($val['id']);
+        //     echo '<form class="login-form" action="comments/com_and_like.php" method="POST">
+        //     '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
+        // </form>';
         }
     } else {
         echo '<p>No results could be displayed.</p>';
