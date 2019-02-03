@@ -32,7 +32,7 @@ if ($total) {
 
     $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
 
-    echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
+    
 
     $query = $pdo->prepare('
 SELECT
@@ -54,15 +54,17 @@ OFFSET
         echo $e->getMessage();
     }
     if ($query->rowCount() > 0) {
+        echo '<div class="row">';
         foreach ($check as $k => $val) {
-            echo '<div class="galerie"><img class ="img_galerie" src="'.($val['photo']).'"></div>';
+            echo '<div class = "col"><img class ="img_galerie" src="'.($val['photo']).'">';
             include('comments/write_comment.html');
             include_once('comments/get_likes.php');
-            echo get_likes($val['id']);
-            echo '<form class="login-form" action="comments/com_and_like.php" method="POST">
+            echo '<form action="comments/com_and_like.php" method="POST">
             '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
-        </form>';
+        </form></div>';
         }
+        echo '</div>';
+        echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
     } else {
         echo '<p>No results could be displayed.</p>';
     }

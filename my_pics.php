@@ -3,10 +3,8 @@ session_start();
 
 include('config/connection.php');
 include('all_my_pics.php');
-print_r($_SESSION);
 $allowed = array("mail", "password", "photos", "forgot", "notif");
 
-print_r($_POST);
 
 try {
 $query = $pdo->prepare("SELECT
@@ -19,7 +17,6 @@ $total = $query->fetchAll();
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-print_r($total);
 ?>
 <!DOCTYPE html>
 <html>

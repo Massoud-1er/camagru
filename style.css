@@ -44,8 +44,10 @@ h1 {
 
 #middle-col {
     background: white;
+    padding:2vmin;
     width: 83vw;
     height: 70vh;
+    overflow-y: scroll;
 }
 
 #right-col {
@@ -64,6 +66,11 @@ h1 {
     margin-right:5vw;
     margin-top:0.5vh;
     font-style: italic;
+}
+
+#paging {
+    margin-top:4vh;
+    text-align:center;
 }
 
 /*
@@ -215,11 +222,14 @@ h1 {
 /* like & com */
 
 #like {
+    margin-left:0.3vw;
     height:2.5vh;
     width: 1.2vw;
 }
 
 #commentbox {
+    margin:auto;
+    width:50%;
     width:15vw;
     height:10vh;
 }
@@ -268,15 +278,24 @@ h1 {
     width: 500px;
     height: 375px;
 }
+
+
+
+
+
+/*
+**  Photos
+*/
+
 .montage {
-    margin-left: 0.5vw;
-    margin-top: 0.5vw;
-    width: 10vw;
-    height: 7.5vw;
+    margin-left: 1vw;
+    width: 9vw;
+    height: 12.5vh;
 }
 .montageDiv {
+    margin-top:0.9vh;
     width: 11vw;
-    height: 14vh;
+    height: 13vh;
 }
 .img_gal {
     margin-left: auto;
@@ -285,37 +304,30 @@ h1 {
     height: 37vw; 
 }
 
-
-/* 
-#right-col {
-    position: absolute;
-    background: white;
-    margin-left: 86.5vw;
-    margin-top: -70vh;
-    width: 11vw;
-    height: 70vh;
-} */
-
-
-
 .my_pics {
-    display:inline-block;
-    vertical-align: top;
-    width: 11vw;
-    height: 14vh;   
-}
-
-.galerie {
-    position:float;
-    margin-left:1vw;
-    vertical-align: top;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5vmin;
     width: 15vw;
     height: 20vh;   
-    vertical-align: top;
 }
+
+.row {
+    margin-left:10vw;
+    vertical-align: top;
+    width: 85%;
+    height: 60vh;   
+}
+
+.col {
+    float:left;
+    width:33%;
+    text-align: center;
+}
+
 .img_galerie {
-    position: float;
     margin-top: 1vh;
-    width: 14vw;
+    width:15vw;
     height: 15vh;
 }

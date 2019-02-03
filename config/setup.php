@@ -63,7 +63,7 @@ function table_likes(){
             `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `id_photo` INT NOT NULL,
             `login` VARCHAR(250) NOT NULL,
-            `like` BIT NOT NULL
+            `like` BIT NOT NULL DEFAULT 0
           )";
         $pdo->exec($sql);
         print("Created `like` Table.\n");

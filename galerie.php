@@ -7,7 +7,6 @@ session_start();
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <button id="deco">se déconnecter</button>
     <div id="top_bar">
     <?php include ('top_bar.php');?>
 </div>

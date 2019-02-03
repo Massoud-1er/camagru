@@ -28,7 +28,6 @@ function add_like($idphoto)
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-    print_r($row);
     if ($row == 0) {
         $query = $pdo->prepare("INSERT INTO `likes` (`id_photo`, `login`, `like`) VALUES ('$idphoto', '$login', 1)");
         try {

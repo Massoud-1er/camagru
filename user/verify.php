@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-print_r($_SESSION);
-print_r($_POST);
-
 function verify_hash()
 {
     include('../config/connection.php');

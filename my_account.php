@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-print_r($_SESSION);
 $allowed = array("mail", "password", "photos", "forgot", "notif");
 
-print_r($_POST);
 ?>
 <!DOCTYPE html>
 <html>
