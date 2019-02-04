@@ -1,10 +1,11 @@
 <?php
 
-// header('Location: '.$_SERVER['HOME'].'/galerie.php');
+header('Location: '.$_SERVER['HOME'].'/galerie.php');
 // die;
-function add_com($idphoto)
+function add_com($idphoto, $photo_login)
 {
     session_start();
+    include('../mail_com.php');
     include('../config/connection.php');
     list($login, $com) = array($_SESSION['login'], $_POST["com"]);
     // Prepare and query SQL for check
@@ -14,6 +15,16 @@ function add_com($idphoto)
         $query->execute();
     } catch (PDOException $e) {
         echo $e->getMessage();
+    }
+    try {
+        $query = $pdo->prepare("SELECT mail FROM users WHERE login=?");
+        $query->execute([$photo_login]);
+        $check = $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    if ($check){
+        mail_com($check[0]['mail']);
     }
     $pdo = null;
 }
@@ -49,8 +60,8 @@ function add_like($idphoto)
     }
     $pdo = null;
 }
-if ($_POST["submit"] == "Ajouter un commmentaire" && $_POST['id'] && $_POST['com']) {
-    add_com($_POST['id']);
+if ($_POST["submit"] == "Ajouter un commmentaire" && $_POST['id'] && $_POST['com'] && $_POST['login']) {
+    add_com($_POST['id'], $_POST['login']);
 } elseif ($_POST["submit"] == "like" && $_POST['id']) {
     add_like($_POST['id']);
 }

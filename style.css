@@ -2,10 +2,11 @@
 **  MAIN
 */
 
-body {
+html, body {
     background-color: white;
     max-width: 100%;
     max-height: 100%;
+    min-height: 100%;
     background-image: url('https://www.laverdure.fr/img/c/3468.jpg');
     background-size: 100%;    
 }
@@ -16,7 +17,6 @@ h1 {
 }
 
 #top_bar {
-  background: white;
   margin-top:2vh;
   margin-left:2.5vw;
   width: 95vw;
@@ -47,14 +47,12 @@ h1 {
 
 #right-col {
     position: absolute;
-    background: white;
+    background: transparent;
     margin-left: 84vw;
     margin-top: -70vh;
     width: 11vw;
     height: 70vh;
 }
-
-
 
 #copyright {
     text-align: right;
@@ -64,7 +62,9 @@ h1 {
 }
 
 #paging {
-    margin-top:4vh;
+    position: absolute;
+    margin-top:15vh;
+    margin-left:38vw;
     text-align:center;
 }
 
@@ -78,19 +78,22 @@ h1 {
     box-sizing: border-box;
   }
   
+  #welcome {
+      font-size:2.5vmin;
+      text-align:center;
+  }
   .header {
     position: absolute;
     height:5vh;
-      width: 95vw;
+    width: 95vw;
     padding-top:1.5vh;
-      margin-top:4.5vh;
-      background: rgb(100, 24, 24);
+    margin-top:4.5vh;
+    background: rgb(100, 24, 24);
   }
 
   body {
       height: 12vh;
-      font-size: 2vh;
-      font-size: 1vw;
+      font-size: 2vmin;
       font-family: sans-serif;
       color: 0;
   }
@@ -123,10 +126,9 @@ h1 {
       display: flex; 
       flex-direction: column;
       background: rgb(100, 24, 24);
-      border-radius: 5px;
       padding-top: 4.5vh;
       position: absolute;
-      top: -1.85vh;
+      top: -1.5vh;
       left: -2vh;
       z-index: 1;
   }
@@ -145,7 +147,7 @@ h1 {
       width: 100%;
   }
   .features-menu li:hover {
-      background-color: #D6E9FE;
+      background-color: rgb(155, 52, 52);
   }
   
   .features-menu li:last-of-type {
@@ -181,7 +183,7 @@ h1 {
 	margin: 0 0 15px;
 	padding: 15px;
 	box-sizing: border-box;
-	font-size: 14px;
+	font-size: 2vmin;
 }
 .form #login {
 	font-family: "Roboto", sans-serif;
@@ -190,9 +192,9 @@ h1 {
 	background: lightskyblue;
 	width: 100%;
 	border: 0;
-	padding: 15px;
+	padding: 1.5vmin;
 	color: #FFFFFF;
-	font-size: 12px;
+	font-size: 1.8vmin;
 	cursor: pointer;
 }
 
@@ -239,14 +241,16 @@ h1 {
     max-height:66vh;
 }
 .display_com{
-    float:right;
+    padding-left: 2vw;
     width:40%;
     overflow-y: scroll;
 }
 .one_com {
+    margin:auto;
+    text-align:center;
     position:relative;
-    margin-left:15vw;
     width:80%;
+    padding:3vmin;
 }
 
 
@@ -306,9 +310,11 @@ h1 {
     margin-left: 1vw;
     width: 9vw;
     height: 12.5vh;
+    border: 0.35vmin solid black;
 }
 .montageDiv {
-    margin-top:0.9vh;
+    margin-bottom:0.9vh;
+    padding-top:0.25vh;
     width: 11vw;
     height: 13vh;
 }
@@ -327,9 +333,18 @@ h1 {
     width: 15vw;
     height: 20vh;   
 }
+#delete {
+    margin-left:0.3vw;
+    height:2.5vh;
+    width: 1.2vw;
+}
+#del_form {
+    margin-left:14vw;
+    margin-top: -2.5vh;
+}
 
 .row {
-    margin-left:10vw;
+    margin-left:7.5vw;
     vertical-align: top;
     width: 85%;
     height: 60vh;   
@@ -339,12 +354,13 @@ h1 {
     float:left;
     width:33%;
     text-align: center;
+    height:38vh;
 }
 
 .img_galerie {
     margin-top: 1vh;
     width:15vw;
-    height: 15vh;
+    height: 20vh;
 }
 .filter {
     width: 10vw;
