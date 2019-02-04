@@ -1,5 +1,29 @@
 <?php
 
+function imageCreateFromAny($filepath) { 
+    $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize() 
+    $allowedTypes = array( 
+        1,  // [] gif 
+        2,  // [] jpg 
+        3,  // [] png 
+    ); 
+    if (!in_array($type, $allowedTypes)) { 
+        return false; 
+    } 
+    switch ($type) { 
+        case 1 : 
+            $im = imageCreateFromGif($filepath); 
+        break; 
+        case 2 : 
+            $im = imageCreateFromJpeg($filepath); 
+        break; 
+        case 3 : 
+            $im = imageCreateFromPng($filepath); 
+        break; 
+    }    
+    return $im;  
+}
+
 function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 
     if(!isset($pct)){ 
         return false; 
@@ -37,7 +61,7 @@ function edit($filt)
     include_once('photo/add_montage.php');
 
     $file = "uploads/".find_id().".png";
-    $im = imagecreatefromjpeg("uploads/photo.png");
+    $im = imageCreateFromAny("uploads/photo.png");
     $image = imagescale($im, 500, 375);
 
     $filter = imagecreatefrompng($filt);
