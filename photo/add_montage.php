@@ -1,15 +1,28 @@
 <?php
+
+function find_id()
+{
+    include('config/connection.php');
+    $query = $pdo->prepare("SELECT MAX(id) FROM photos");
+    try {
+        $query->execute();
+        $result = $query->fetchAll();
+    } catch (PDOexception $e) {}
+    $result = $result[0]['MAX(id)'] + 1;
+    $pdo = null;
+    return $result;
+}
+
 function save_img()
 {
     include('config/connection.php');
-    session_start();
-    if(isset($_POST["submit"]))  
+    if (isset($_POST["save"]))
     {
         date_default_timezone_set(UTC);
         $date = date('Y-m-d', time());
         $login = $_SESSION['login'];
-        $file = addslashes(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));  
-        $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 0)");  
+        $file = "uploads/".find_id().".png";
+        $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 1)");
         try {
             $query->execute();
             echo "la photo a bien été mise dans la db";
@@ -20,6 +33,4 @@ function save_img()
     else
         echo "oups";
 }
-save_img();
-
 ?>

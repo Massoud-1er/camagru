@@ -73,6 +73,7 @@ OFFSET
         </form>';
             }
         echo '</div>';
+
         }
         echo '</div>';
         echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';

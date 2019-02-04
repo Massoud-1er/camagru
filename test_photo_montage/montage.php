@@ -32,16 +32,25 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
+function edit($filt)
+{
+    include_once('photo/add_montage.php');
 
-    $im = imagecreatefromjpeg($_FILES['fileToUpload']['tmp_name']);
+    $file = "uploads/".find_id().".png";
+    $im = imagecreatefromjpeg("uploads/photo.png");
     $image = imagescale($im, 500, 375);
 
-    $filter = imagecreatefrompng("test_photo_montage/smiley.png");
+    $filter = imagecreatefrompng($filt);
     imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
     imagesavealpha($image, true);
 
-    echo "<div><h1>dededede</h1></div>";
-//    imagejpeg($image);
-    imagepng($image, 'test_photo_montage/tgt.png');
-
+    imagepng($image, $file);
+    print_r($file);
+    echo "<div><img src=\"$file\"></div>";
+    echo "<form action=\"\" method=\"post\">
+    <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
+    // if (isset($_POST["filter"])) {
+    //    save_img();
+    // }
+}
 ?>
