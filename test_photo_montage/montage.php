@@ -45,12 +45,8 @@ function edit($filt)
     imagesavealpha($image, true);
 
     imagepng($image, $file);
-    print_r($file);
     echo "<div><img src=\"$file\"></div>";
     echo "<form action=\"\" method=\"post\">
     <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
-    // if (isset($_POST["filter"])) {
-    //    save_img();
-    // }
 }
 ?>

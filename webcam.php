@@ -20,21 +20,21 @@ session_start();
 </div>
     <br/>
 
+
     <div id="full_body">
     <div id="middle-col">
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
-    <button id="pic" onclick="test()">prendre photo</button>
-    <!-- <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
-    <div id="container"  name='cont' class="container-fluid no-padding ">
-        <video autoplay="true" id="videoElement" name='vid'>
-        </video>
-    </div> -->
-    <a id="download" download="face.jpg"></form>
-    <button onclick="myFunction() downlowd();" align="center" style="margin: 20px 250px auto " class="btn btn-primary dropdown-toggle" type="button" >capture</button></a>
-    <form action="" method="post" enctype="multipart/form-data">
+   
+    <form method="post" action=""> 
+            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
+            <input id="data_img" type="hidden" name="data_img" value="">
+    </form>
+    
+    <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
     Selectionner une image depuis votre ordinateur:
+    <form method="post" action="" enctype="multipart/form-data"> 
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit" id="insert">
     </form>
@@ -46,11 +46,8 @@ session_start();
 
 </div>
 <?php include('footer.php'); ?>
-<script src="webcam.js"></script>
-</form>
-<canvas id="canvas"></canvas>
 <br/>
-<script src="webcam.js"></script>
+
 <div id="right-rec"></div>
     <div>
         <form action="" method="post">
@@ -71,11 +68,23 @@ session_start();
         </button>
         </form>
     </div>
+    <script src="webcam.js"></script>
 </body>
 </html>
 
-
 <?php
+
+function getimg()
+{
+    if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
+        $img = $_POST['data_img'];
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        file_put_contents("uploads/photo.png", $data);
+        echo "<div><img src=\"/uploads/photo.png\"></div>";
+    }
+}
 
 function upload()
 {
@@ -142,6 +151,9 @@ function choose_filter()
     if (isset($_POST["save"]))
         save_img();
 }
+
+getimg();
 upload();
 choose_filter();
+
 ?>
