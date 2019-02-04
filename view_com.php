@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
         <div class ="comz">
     <?php echo '<img class ="img_com" src="'.$pic.'">'; ?>
 </div>
-    <div id = "display_com">
+    <div class = "display_com">
     <?php include('display_com.php');?>
 </div>
     </div>

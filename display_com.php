@@ -7,9 +7,9 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
 if ($query->rowCount() > 0) {
     foreach ($total as $k => $val) {
+        echo ''.$val['login'].' a commenté :';
         echo '<div class="one_com">'.($val['comments']).'</div>';
     }
 }

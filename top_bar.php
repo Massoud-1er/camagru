@@ -1,5 +1,5 @@
 <?php
-echo '<p id= "welcome">Bienvenue !</p>
+echo '<p id= "welcome"><a href="index.php">Camagru</a></p>
     <div class="header">
                             <ul class="menu">
                             <li class="dropdown"><span>Mon compte</span>
