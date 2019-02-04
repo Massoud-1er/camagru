@@ -62,6 +62,7 @@ OFFSET
             echo '<form action="comments/com_and_like.php" method="POST">
             <p>Ajouter un commentaire :</p><input id="commentbox" type="text" name="com"><br>
             <input type="hidden" name="id" value="'.$val['id'].'">
+            <input type="hidden" name="login" value="'.$val['login'].'">
             <input type="submit" name="submit" value="Ajouter un commmentaire">
     </form>';
     

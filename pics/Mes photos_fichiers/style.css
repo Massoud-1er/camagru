@@ -17,6 +17,7 @@ h1 {
 }
 
 #top_bar {
+  background: white;
   margin-top:2vh;
   margin-left:2.5vw;
   width: 95vw;
@@ -78,22 +79,19 @@ h1 {
     box-sizing: border-box;
   }
   
-  #welcome {
-      font-size:2.5vmin;
-      text-align:center;
-  }
   .header {
     position: absolute;
     height:5vh;
-    width: 95vw;
+      width: 95vw;
     padding-top:1.5vh;
-    margin-top:4.5vh;
-    background: rgb(100, 24, 24);
+      margin-top:4.5vh;
+      background: rgb(100, 24, 24);
   }
 
   body {
       height: 12vh;
-      font-size: 2vmin;
+      font-size: 2vh;
+      font-size: 1vw;
       font-family: sans-serif;
       color: 0;
   }
@@ -126,9 +124,10 @@ h1 {
       display: flex; 
       flex-direction: column;
       background: rgb(100, 24, 24);
+      border-radius: 5px;
       padding-top: 4.5vh;
       position: absolute;
-      top: -1.5vh;
+      top: -1.85vh;
       left: -2vh;
       z-index: 1;
   }
@@ -147,7 +146,7 @@ h1 {
       width: 100%;
   }
   .features-menu li:hover {
-      background-color: rgb(155, 52, 52);
+      background-color: #D6E9FE;
   }
   
   .features-menu li:last-of-type {
@@ -183,7 +182,7 @@ h1 {
 	margin: 0 0 15px;
 	padding: 15px;
 	box-sizing: border-box;
-	font-size: 2vmin;
+	font-size: 14px;
 }
 .form #login {
 	font-family: "Roboto", sans-serif;
@@ -192,9 +191,9 @@ h1 {
 	background: lightskyblue;
 	width: 100%;
 	border: 0;
-	padding: 1.5vmin;
+	padding: 15px;
 	color: #FFFFFF;
-	font-size: 1.8vmin;
+	font-size: 12px;
 	cursor: pointer;
 }
 
@@ -344,7 +343,7 @@ h1 {
 }
 
 .row {
-    margin-left:7.5vw;
+    margin-left:10vw;
     vertical-align: top;
     width: 85%;
     height: 60vh;   

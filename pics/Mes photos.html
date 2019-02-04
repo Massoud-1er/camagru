@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Mes photos</title>
+    <link rel="stylesheet" type="text/css" href="Mes%20photos_fichiers/style.css">
+</head>
+<body>
+    <div id="top_bar">
+    <p id="welcome">Bienvenue !</p>
+    <div class="header">
+                            <ul class="menu">
+                            <li class="dropdown"><span>Mon compte</span>
+  <ul class="features-menu">            <li><a href="http://localhost:8100/my_account.php">Voir mon compte</a></li>            <li><a href="http://localhost:8100/user/logout_user.php">Se deconnecter</a></li>
+       </ul>
+</li>
+<li class="dropdown"><span>Photos</span>
+  <ul class="features-menu">
+  <li><a href="http://localhost:8100/galerie.php">Galerie</a></li>
+  <li><a href="http://localhost:8100/webcam.php">Webcam</a></li>
+  </ul>
+</li>
+</ul>
+</div></div>
+    <div id="full_body">
+        
+        <div id="middle-col">
+        <div class="col"><img class="my_pics" src="Mes%20photos_fichiers/1.jpg">Nombre de personnes aimant cette photo : 14<div><br><a href="http://localhost:8100/view_com.php?id=1">Voir les commentaires.</a><form id="del_form" onsubmit="return confirm('Are you sure?');" action="photo/add_montage.php" method="POST">
+        <input id="delete" type="image" src="Mes%20photos_fichiers/del.svg" alt="submit">
+        <input type="hidden" name="id" value="1">
+        <input type="hidden" name="submit" value="del">
+        </form></div></div><div class="col"><img class="my_pics" src="Mes%20photos_fichiers/2.jpg">Nombre de personnes aimant cette photo : 25<div><br><a href="http://localhost:8100/view_com.php?id=2">Voir les commentaires.</a><form id="del_form" onsubmit="return confirm('Are you sure?');" action="photo/add_montage.php" method="POST">
+        <input id="delete" type="image" src="Mes%20photos_fichiers/del.svg" alt="submit">
+        <input type="hidden" name="id" value="2">
+        <input type="hidden" name="submit" value="del">
+        </form></div></div><div class="col"><img class="my_pics" src="Mes%20photos_fichiers/3.jpg">Nombre de personnes aimant cette photo : 4<div><br><a href="http://localhost:8100/view_com.php?id=3">Voir les commentaires.</a><form id="del_form" onsubmit="return confirm('Are you sure?');" action="photo/add_montage.php" method="POST">
+        <input id="delete" type="image" src="Mes%20photos_fichiers/del.svg" alt="submit">
+        <input type="hidden" name="id" value="3">
+        <input type="hidden" name="submit" value="del">
+        </form></div></div><div class="col"><img class="my_pics" src="Mes%20photos_fichiers/4.jpg">Nombre de personnes aimant cette photo : 27<div><br><a href="http://localhost:8100/view_com.php?id=4">Voir les commentaires.</a><form id="del_form" onsubmit="return confirm('Are you sure?');" action="photo/add_montage.php" method="POST">
+        <input id="delete" type="image" src="Mes%20photos_fichiers/del.svg" alt="submit">
+        <input type="hidden" name="id" value="4">
+        <input type="hidden" name="submit" value="del">
+        </form></div></div><div class="col"><img class="my_pics" src="Mes%20photos_fichiers/5.jpg">Nombre de personnes aimant cette photo : 9<div><br><a href="http://localhost:8100/view_com.php?id=5">Voir les commentaires.</a><form id="del_form" onsubmit="return confirm('Are you sure?');" action="photo/add_montage.php" method="POST">
+        <input id="delete" type="image" src="Mes%20photos_fichiers/del.svg" alt="submit">
+        <input type="hidden" name="id" value="5">
+        <input type="hidden" name="submit" value="del">
+        </form></div></div>        </div>
+            <div id="right-col">
+                </div> 
+            </div>         
+             
+    <hr>
+    <div id="copyright">
+            © Camagru 2019
+    </div>    
+
+</body></html>

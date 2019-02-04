@@ -1,4 +1,17 @@
 <?php
+function del_montage($idphoto)
+{
+    header('Location: ../my_pics.php');
+    include('../config/connection.php');
+    $query = $pdo->prepare("DELETE FROM photos WHERE id =?");
+    try {
+        $query->execute([$idphoto]);
+        $result = $query->fetchAll();
+    } catch (PDOexception $e) {
+        echo $e->getMessage();
+    }    
+    $pdo = null;
+}
 
 function find_id()
 {
@@ -7,7 +20,9 @@ function find_id()
     try {
         $query->execute();
         $result = $query->fetchAll();
-    } catch (PDOexception $e) {}
+    } catch (PDOexception $e) {
+        echo $e->getMessage();
+    }
     $result = $result[0]['MAX(id)'] + 1;
     $pdo = null;
     return $result;
@@ -32,5 +47,9 @@ function save_img()
     }
     else
         echo "oups";
+}
+
+if ($_POST['submit'] && $_POST['submit'] == "del"){
+    del_montage($_POST['id']);
 }
 ?>
