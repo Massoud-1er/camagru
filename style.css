@@ -257,6 +257,13 @@ h1 {
 /*
 **  Webcam
 */
+
+#body-webcam{
+    background: white;
+    padding:2vmin;
+    width: 83vw;
+    height: 70vh;
+}
 #container {
     margin-left: 5vw;
     width: 25vw;
@@ -265,8 +272,20 @@ h1 {
     position: absolute; 
 }
 #canvas {
-    width: 500px;
-    height: 375px;
+    visibility: hidden;
+    width: 25vw;
+    height: 35vh;
+    position: absolute;
+}
+#CANVAS {
+    visibility: hidden;
+    width: 25vw;
+    height: 35vh;
+}
+
+#post_cam {
+    margin-top:25vh;
+    position: absolute;
 }
 #cam_pic{
     margin-left: 45vw;
@@ -274,11 +293,29 @@ h1 {
     height: 35vh;
     position: absolute; 
 }
+#cam_montage{
+    margin-left: 45vw;
+    width: 25vw;
+    height: 35vh;
+    position: absolute; 
+}
+#up_img {
+    margin-left: 45vw;
+    width: 25vw;
+    height: 35vh;
+    position: absolute; 
+}
+
+#save{
+    color:black;
+    margin-left: 75vw;
+    margin-top: 17vh;
+    position: absolute; 
+}
 
 #videoElement {
     width:100%;
     height:100%;
-    background-color: #666;
 }
 #header {
     width: 75%;
@@ -308,7 +345,8 @@ h1 {
 }
 
 #filter {
-    margin-top:-25vh;
+    margin-top:-9vh;
+    margin-left:40vw;
     position:absolute;
     width: 60vw;
 }
