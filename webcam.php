@@ -1,78 +1,5 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-    <meta content="stuff, to, help, search, engines, not" name="keywords">
-    <meta content="What this page is about." name="description">
-    <meta content="Display Webcam Stream" name="title">
-    <title>Camagru</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-<style>
-</style>
-</head>
-  
-<body>
-<div id="top_bar">
-    <?php include('top_bar.php');?>
-</div>
-    <br/>
-
-
-    <div id="full_body">
-    <div id="middle-col">
-    <div id="container">
-        <video autoplay="true" id="videoElement"></video>
-    </div>
-   
-    <form method="post" action=""> 
-            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
-            <input id="data_img" type="hidden" name="data_img" value="">
-    </form>
-    
-    <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
-    Selectionner une image depuis votre ordinateur:
-    <form method="post" action="" enctype="multipart/form-data"> 
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit" id="insert">
-    </form>
-    <canvas id="canvas"></canvas>
-</div> 
-    <div id="right-col">
-        <?php include('get_mini.php');?>
-</div>
-
-</div>
-<?php include('footer.php'); ?>
-<br/>
-
-<div id="right-rec"></div>
-    <div>
-        <form action="" method="post">
-        <button name="filter1" value="filt">
-            <img src="test_photo_montage/filter1.png" class="filter">
-        </button>
-        <button name="filter2" value="filt">
-            <img src="test_photo_montage/filter2.png" class="filter">
-        </button>
-        <button name="filter3" value="filt">
-            <img src="test_photo_montage/filter3.png" class="filter">
-        </button>
-        <button name="filter4" value="filt">
-            <img src="test_photo_montage/filter4.png" class="filter">
-        </button>
-        <button name="smiley" value="filt">
-            <img src="test_photo_montage/smiley.png" class="filter">
-        </button>
-        </form>
-    </div>
-    <script src="webcam.js"></script>
-</body>
-</html>
-
-<?php
 
 function getimg()
 {
@@ -82,7 +9,7 @@ function getimg()
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
         file_put_contents("uploads/photo.png", $data);
-        echo "<div><img src=\"/uploads/photo.png\"></div>";
+        echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
     }
 }
 
@@ -152,8 +79,81 @@ function choose_filter()
         save_img();
 }
 
-getimg();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta content="stuff, to, help, search, engines, not" name="keywords">
+    <meta content="What this page is about." name="description">
+    <meta content="Display Webcam Stream" name="title">
+    <title>Camagru</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<style>
+</style>
+</head>
+  
+<body>
+<div id="top_bar">
+    <?php include('top_bar.php');?>
+</div>
+    <br/>
+
+
+    <div id="full_body">
+    <div id="middle-col">
+    <div id="container">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+    <?php getimg(); ?>
+    <form method="post" action=""> 
+            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
+            <input id="data_img" type="hidden" name="data_img" value="">
+    </form>
+    <br><br><br>
+    <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
+    Selectionner une image depuis votre ordinateur:
+    <form method="post" action="" enctype="multipart/form-data"> 
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit" id="insert">
+    </form>
+    <canvas id="canvas"></canvas>
+    <div id ="filter">
+        <form action="" method="post">
+        <button name="filter1" value="filt">
+            <img src="test_photo_montage/filter1.png" class="filter">
+        </button>
+        <button name="filter2" value="filt">
+            <img src="test_photo_montage/filter2.png" class="filter">
+        </button>
+        <button name="filter3" value="filt">
+            <img src="test_photo_montage/filter3.png" class="filter">
+        </button>
+        <button name="filter4" value="filt">
+            <img src="test_photo_montage/filter4.png" class="filter">
+        </button>
+        <button name="smiley" value="filt">
+            <img src="test_photo_montage/smiley.png" class="filter">
+        </button>
+        </form>
+    </div> 
+</div> 
+    <div id="right-col">
+        <?php include('get_mini.php');?>
+</div>
+
+</div>
+<?php include('footer.php'); ?>
+<br/>
+
+   
+    <script src="webcam.js"></script>
+</body>
+</html>
+
+<?php
 upload();
 choose_filter();
-
 ?>
+
+
