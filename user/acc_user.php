@@ -1,5 +1,5 @@
 <?php
-
+header("Location: ../index.php");
 function change_pw()
 {
     include('../config/connection.php');

@@ -19,6 +19,13 @@ session_start();
     <?php include('top_bar.php');?>
 </div>
     <br/>
+
+    <div id="full_body">
+    <div id="middle-col">
+    <div id="container">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+    <button id="pic" onclick="test()">prendre photo</button>
     <!-- <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
     <div id="container"  name='cont' class="container-fluid no-padding ">
         <video autoplay="true" id="videoElement" name='vid'>
@@ -30,6 +37,16 @@ session_start();
     Selectionner une image depuis votre ordinateur:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit" id="insert">
+    </form>
+    <canvas id="canvas"></canvas>
+</div> 
+    <div id="right-col">
+        <?php include('get_mini.php');?>
+</div>
+
+</div>
+<?php include('footer.php'); ?>
+<script src="webcam.js"></script>
 </form>
 <canvas id="canvas"></canvas>
 <br/>

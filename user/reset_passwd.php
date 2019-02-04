@@ -8,15 +8,11 @@ if (isset($_GET["key"]) && isset($_GET["email"]) && isset($_GET["action"])
     $key = $_GET["key"];
     $mail = $_GET["email"];
     $curDate = date("Y-m-d H:i:s");
-    echo ("_GET\n");
-    print_r($_GET);
     try {
         // Prepare and query SQL for check
         $query = $pdo->prepare("SELECT * FROM `password_reset` WHERE `key`= ? AND `mail`= ?");
         $query->execute([$key, $mail]);
         $check = $query->fetchAll();
-        echo ("CHECK\n");
-        print_r($check);
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

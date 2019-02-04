@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-print_r($_SESSION);
 $allowed = array("mail", "password", "photos", "forgot", "notif");
 
-print_r($_POST);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,9 +36,9 @@ print_r($_POST);
             <a href="#">Categorie 4</a>
             <a href="#">Categorie 5</a>
     </div> -->
-                                </div>         
     <div id="right-col">
     </div> 
+                                </div>         
     <div id="footer"></div>
     
 

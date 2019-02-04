@@ -27,7 +27,7 @@ function save_img()
             $query->execute();
             echo "la photo a bien été mise dans la db";
         } catch (PDOexception $e) {
-            echo "la photo n'a pas été mise dans ls db";
+            echo "la photo n'a pas été mise dans la db";
         }
     }
     else

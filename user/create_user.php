@@ -49,5 +49,6 @@ function create_user(){
     }
     $pdo = null;
 }
+header("Location: ../index.php");
 create_user();
 ?>

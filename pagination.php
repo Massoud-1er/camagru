@@ -1,6 +1,7 @@
 <?php 
 
-include('config/connection.php');
+include_once('comments/get_likes.php');
+include_once('config/connection.php');
 try {
 $query = $pdo->prepare("SELECT
 COUNT(*)
@@ -32,7 +33,7 @@ if ($total) {
 
     $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
 
-    echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
+    
 
     $query = $pdo->prepare('
 SELECT
@@ -54,17 +55,28 @@ OFFSET
         echo $e->getMessage();
     }
     if ($query->rowCount() > 0) {
+        echo '<div class="row">';
         foreach ($check as $k => $val) {
-            print_r(base64_encode($val['photo']));
-            print_r($check);
-            echo '<p><img src="data:image/jpeg;base64,'.base64_encode($val['photo']).'" class="img_gal" /></p>';
-            include('comments/write_comment.html');
-            // include('comments/get_likes.php');
-            // echo get_likes($val['id']);
-        //     echo '<form class="login-form" action="comments/com_and_like.php" method="POST">
-        //     '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png" alt="submit" value="like"></a>
-        // </form>';
+            echo '<div class = "col"><img class ="img_galerie" src="'.($val['photo']).'">';
+            if ($_SESSION['login']){
+            echo '<form action="comments/com_and_like.php" method="POST">
+            <p>Ajouter un commentaire :</p><input id="commentbox" type="text" name="com"><br>
+            <input type="hidden" name="id" value="'.$val['id'].'">
+            <input type="submit" name="submit" value="Ajouter un commmentaire">
+    </form>';
+    
+            echo '<form action="comments/com_and_like.php" method="POST">
+            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png"></a>
+            <input type="hidden" name="id" value="'.$val['id'].'">
+            <input type="hidden" name="submit" value="like">
+
+        </form>';
+            }
+        echo '</div>';
+
         }
+        echo '</div>';
+        echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
     } else {
         echo '<p>No results could be displayed.</p>';
     }

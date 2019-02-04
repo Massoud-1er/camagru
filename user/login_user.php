@@ -2,16 +2,14 @@
 //connection to SQL through PDO
 include('../config/connection.php');
 session_start();
-
+header("Location: ../index.php");
     if ($_POST['submit'] == "Se connecter" && $_POST["login"] && $_POST["password"]) {
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {
-            print_r($_POST); 
             // Prepare and query SQL for check
-            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password')");
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password') AND verified = 'Y'");
             $query->execute();
             $check = $query->fetchAll();
-            print_r($check);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -32,7 +30,6 @@ session_start();
                 $_SESSION['verified'] = 0;
                 echo("User is not verified\n");
             }
-            print_r($_SESSION);   
         }
     }
     $pdo = null;
