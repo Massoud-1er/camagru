@@ -37,7 +37,7 @@ function save_img()
         $date = date('Y-m-d', time());
         $login = $_SESSION['login'];
         $file = "uploads/".find_id().".png";
-        $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 1)");
+        $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 0)");
         try {
             $query->execute();
             echo "la photo a bien été mise dans la db";
