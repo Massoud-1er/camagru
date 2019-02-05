@@ -3,15 +3,11 @@ header("Location: ../index.php");
 function change_pw()
 {
     include('../config/connection.php');
-    // create var of user, oldpw and newpw
     list($login, $oldpw, $newpw) = array($_POST["login"], $_POST["oldpw"], $_POST["newpw"]);
     try {
-        // Prepare and query SQL for check
-        //first check for login
         $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
         $query->execute([$login]);
         $check = $query->fetchAll();
-        //second check for passwd
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND password=PASSWORD('$oldpw')");
         $query->execute();
         $check2 = $query->fetchAll();
@@ -19,14 +15,11 @@ function change_pw()
         echo $e->getMessage();
     }
     if ($check && $check2) {
-        // Change passwd in SQL
         $query = $pdo->prepare("UPDATE users
                 SET password=PASSWORD('$newpw')
                 WHERE login='$login'");
         try {
             $query->execute();
-            // header("Location: ../index.php");
-            echo("Le mot de passe a bien ete change\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -41,15 +34,11 @@ function change_pw()
 function change_mail()
 {
     include('../config/connection.php');
-    // create var of user, oldmail and newmail
     list($login, $oldmail, $newmail) = array($_POST["login"], $_POST["oldmail"], $_POST["newmail"]);
     try {
-        // Prepare and query SQL for check
-        //first check for login
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
         $query->execute();
         $check = $query->fetchAll();
-        //second check for mail
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND mail='$oldmail'");
         $query->execute();
         $check2 = $query->fetchAll();
@@ -57,13 +46,11 @@ function change_mail()
         echo $e->getMessage();
     }
     if ($check && $check2) {
-        // Change mail in SQL
         $query = $pdo->prepare("UPDATE users
                 SET mail='$newmail'
                 WHERE login='$login'");
         try {
             $query->execute();
-            // header("Location: ../index.php");
             echo("L'adresse e-mail a bien ete modifie\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -79,19 +66,14 @@ function change_mail()
 function change_notif()
 {
     include('../config/connection.php');
-    // create var of user, oldpw and newpw
     list($login, $mail) = array($_POST["login"], $_POST["mail"]);
     try {
-        // Prepare and query SQL for check
-        //first check for login
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
         $query->execute();
         $check = $query->fetchAll();
-        //second check for mail
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND mail='$mail'");
         $query->execute();
         $check2 = $query->fetchAll();
-        //third check for notif
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND notif='Y'");
         $query->execute();
         $check3 = $query->fetchAll();
@@ -99,13 +81,11 @@ function change_notif()
         echo $e->getMessage();
     }
     if ($check && $check2 && $check3) {
-        // Change notif in SQL
         $query = $pdo->prepare("UPDATE users
                 SET notif='N'
                 WHERE login='$login'");
         try {
             $query->execute();
-            // header("Location: ../index.php");
             echo("Vous ne recevrez plus de notifications par mail\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -124,15 +104,11 @@ function reset_passwd()
 {
     include('../config/connection.php');
     include('mail_reset.php');
-    // create var of user, oldpw and newpw
     list($login, $mail) = array($_POST["login"], $_POST["mail"]);
     try {
-        // Prepare and query SQL for check
-        //first check for login
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
         $query->execute();
         $check = $query->fetchAll();
-        //second check for mail
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND mail='$mail'");
         $query->execute();
         $check2 = $query->fetchAll();
@@ -177,7 +153,7 @@ if ($_POST["submit"] == "Modifier son mot de passe" && $_POST["login"] && $_POST
     change_pw();
 } elseif ($_POST["submit"] == "Modifier son adresse e-mail" && $_POST["login"] && $_POST["oldmail"] && $_POST["newmail"]) {
     change_mail();
-} elseif ($_POST["submit"] == "Ne plus recevoir les notifications par mail" && $_POST["login"] && $_POST["mail"]) {
+} elseif ($_POST["submit"] == "Desactiver les notifcations" && $_POST["login"] && $_POST["mail"]) {
     change_notif();
 }
 else if ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]){
