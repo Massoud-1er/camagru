@@ -1,8 +1,9 @@
 <?php
+
 function del_montage($idphoto)
 {
     header('Location: ../my_pics.php');
-    include('../config/connection.php');
+    include('config/connection.php');
     $query = $pdo->prepare("DELETE FROM photos WHERE id =?");
     try {
         $query->execute([$idphoto]);
@@ -31,7 +32,9 @@ function find_id()
 function save_img()
 {
     include('config/connection.php');
-    if (isset($_POST["save"])) {
+    include_once('webcam.php');
+    if (isset($_POST["save"]))
+    {
         date_default_timezone_set(UTC);
         $date = date('Y-m-d', time());
         $login = $_SESSION['login'];
@@ -43,6 +46,8 @@ function save_img()
             } catch (PDOexception $e) {
                 echo $e->getMessage();
             }
+        if (file_exists("uploads/photo.png"))
+            unlink("uploads/photo.png");
         }
     }
 }

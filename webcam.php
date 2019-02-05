@@ -15,6 +15,12 @@ function del_old_edit()
  }
 
 
+function del_old_photo()
+{
+    if (file_exists("uploads/photo.png"))
+        unlink("uploads/photo.png");
+}
+
 function getimg()
 {
     if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
@@ -77,6 +83,8 @@ function choose_filter()
 {
     include_once('photo/add_montage.php');
     include('test_photo_montage/montage.php');
+    if (file_exists("uploads/photo.png") || file_exists("uploads/".find_id().".png"))
+    {
     if (isset($_POST["filter1"]))
         edit("test_photo_montage/filter1.png");
     if (isset($_POST["filter2"]))
@@ -85,10 +93,12 @@ function choose_filter()
         edit("test_photo_montage/filter3.png");
     if (isset($_POST["filter4"]))
         edit("test_photo_montage/filter4.png");
-    if (isset($_POST["smiley"]))
-        edit("test_photo_montage/smiley.png");
-    if (isset($_POST["save"]))
+    if (isset($_POST["filter5"]))
+        edit("test_photo_montage/filter5.png");
+    if (isset($_POST["save"])){
         save_img();
+    }
+}
 }
 
 ?>
@@ -107,6 +117,10 @@ function choose_filter()
 <div id="top_bar">
     <?php include('top_bar.php');?>
 </div>
+    <?php 
+    // del_old_edit();
+    // del_old_photo();
+    ?>
     <br/>
     <div id="full_body">
     <div id="body-webcam">
@@ -117,7 +131,7 @@ function choose_filter()
     <?php choose_filter(); ?>
     <?php upload(); ?>
     <form id ="post_cam" method="post" action=""> 
-            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
+    <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
             <input id="data_img" type="hidden" name="data_img" value="">
     </form>
     <br><br><br>
@@ -142,8 +156,8 @@ function choose_filter()
         <button name="filter4" value="filt">
             <img src="test_photo_montage/filter4.png" class="filter">
         </button>
-        <button name="smiley" value="filt">
-            <img src="test_photo_montage/smiley.png" class="filter">
+        <button name="filter5" value="filt">
+            <img src="test_photo_montage/filter5.png" class="filter">
         </button>
         </form>
     </div> 
