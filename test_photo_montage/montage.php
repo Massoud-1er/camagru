@@ -59,20 +59,26 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
 function edit($filt)
 {
     include_once('photo/add_montage.php');
-    $pic = "uploads/photo.png";
+    
     $file = "uploads/".find_id().".png";
     if (file_exists("uploads/".find_id().".png"))
         $pic = $file;
+    else
+        $pic = "uploads/photo.png";
+    print_r($pic);
     $im = imageCreateFromAny($pic);
     $image = imagescale($im, 500, 375);
 
     $filter = imagecreatefrompng($filt);
+    $filter = imagescale($filter, 250, 150);
     imagecopymerge_alpha($image, $filter, 100, 100, 0, 0, imagesx($filter), imagesy($filter), 100); 
     imagesavealpha($image, true);
 
     imagepng($image, $file);
     imagedestroy($im);
     imagedestroy($filter);
+    // if (file_exists("uploads/photo.png"))
+    //     unlink("uploads/photo.png");
     echo "<div><img id = \"up_img\" src=\"$file\"></div>";
     echo "<form action=\"\" method=\"post\">
     <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
