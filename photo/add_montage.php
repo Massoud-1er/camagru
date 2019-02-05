@@ -31,17 +31,18 @@ function find_id()
 function save_img()
 {
     include('config/connection.php');
-    if (isset($_POST["save"]))
-    {
+    if (isset($_POST["save"])) {
         date_default_timezone_set(UTC);
         $date = date('Y-m-d', time());
         $login = $_SESSION['login'];
         $file = "uploads/".find_id().".png";
-        $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 1)");
-        try {
-            $query->execute();
-        } catch (PDOexception $e) {
-            echo $e->getMessage();
+        if (file_exists($file)) {
+            $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 1)");
+            try {
+                $query->execute();
+            } catch (PDOexception $e) {
+                echo $e->getMessage();
+            }
         }
     }
 }

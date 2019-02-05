@@ -1,15 +1,23 @@
 <?php
 session_start();
 
+function del_old_edit()
+{
+    include_once('photo/add_montage.php');
+    if (file_exists("uploads/".find_id().".png"))
+        unlink("uploads/".find_id().".png");
+}
+
 function getimg()
 {
     if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
+        del_old_edit();
         $img = $_POST['data_img'];
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
         file_put_contents("uploads/photo.png", $data);
-        echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
+        echo "<div><img src=\"/uploads/photo.png\"></div>";
     }
 }
 
@@ -22,6 +30,7 @@ function upload()
      // Check if image file is a actual image or fake image
     if(isset($_POST["submit"]))
     {
+        del_old_edit();
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             $uploadOk = 1;
