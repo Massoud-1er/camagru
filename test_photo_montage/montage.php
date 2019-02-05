@@ -69,7 +69,7 @@ function edit($filt)
     imagesavealpha($image, true);
 
     imagepng($image, $file);
-    echo "<div><img src=\"$file\"></div>";
+    echo "<div><img id = \"up_img\" src=\"$file\"></div>";
     echo "<form action=\"\" method=\"post\">
     <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
 }
