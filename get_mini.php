@@ -2,7 +2,7 @@
 
 include('config/connection.php');
 try {
-    $query = $pdo->prepare("SELECT * FROM `photos` ORDER BY date DESC limit 5");
+    $query = $pdo->prepare("SELECT * FROM `photos` ORDER BY id DESC limit 5");
     $query->execute();
     $total = $query->fetchAll();
 } catch (PDOException $e) {
