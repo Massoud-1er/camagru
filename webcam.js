@@ -21,4 +21,3 @@ function myFunction() {
   data_img.setAttribute('value', data);
 }
 }
-

@@ -73,7 +73,7 @@ function edit($filt)
     imagepng($image, $file);
     imagedestroy($im);
     imagedestroy($filter);
-    echo "<div><img src=\"$file\"></div>";
+    echo "<div><img id = \"up_img\" src=\"$file\"></div>";
     echo "<form action=\"\" method=\"post\">
     <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
 }

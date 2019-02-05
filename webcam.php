@@ -1,78 +1,5 @@
 <?php
 session_start();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-    <meta content="stuff, to, help, search, engines, not" name="keywords">
-    <meta content="What this page is about." name="description">
-    <meta content="Display Webcam Stream" name="title">
-    <title>Camagru</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-<style>
-</style>
-</head>
-
-<body>
-<div id="top_bar">
-    <?php include('top_bar.php');?>
-</div>
-    <br/>
-
-
-    <div id="full_body">
-    <div id="middle-col">
-    <div id="container">
-        <video autoplay="true" id="videoElement"></video>
-    </div>
-   
-    <form method="post" action=""> 
-            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
-            <input id="data_img" type="hidden" name="data_img" value="">
-    </form>
-    
-    <canvas id="CANVAS" name="CANVAS" width="500" height="375">Your browser does not support Canvas.</canvas>
-    Selectionner une image depuis votre ordinateur:
-    <form method="post" action="" enctype="multipart/form-data"> 
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit" id="insert">
-    </form>
-    <canvas id="canvas"></canvas>
-</div> 
-    <div id="right-col">
-        <?php include('get_mini.php');?>
-</div>
-
-</div>
-<?php include('footer.php'); ?>
-<br/>
-
-<div id="right-rec"></div>
-    <div>
-        <form action="" method="post">
-        <button name="filter1" value="filt">
-            <img src="test_photo_montage/filter1.png" class="filter">
-        </button>
-        <button name="filter2" value="filt">
-            <img src="test_photo_montage/filter2.png" class="filter">
-        </button>
-        <button name="filter3" value="filt">
-            <img src="test_photo_montage/filter3.png" class="filter">
-        </button>
-        <button name="filter4" value="filt">
-            <img src="test_photo_montage/filter4.png" class="filter">
-        </button>
-        <button name="smiley" value="filt">
-            <img src="test_photo_montage/smiley.png" class="filter">
-        </button>
-        </form>
-    </div>
-    <script src="webcam.js"></script>
-</body>
-</html>
-
-<?php
 
 function del_old_edit()
 {
@@ -106,10 +33,8 @@ function upload()
         del_old_edit();
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
-            echo "File is not an image.";
             $uploadOk = 0;
         }
     // Check if file already exists
@@ -118,7 +43,7 @@ function upload()
          $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 2500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -132,14 +57,14 @@ function upload()
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
     // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/photo.png")) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
-    echo "<div><img src=\"/uploads/photo.png\"></div>";
+    }  else {
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/photo.png")) {
+                    echo "";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+         }
+    echo "<div><img id=\"up_img\" src=\"/uploads/photo.png\"></div>";
     }
 }
 
@@ -161,8 +86,73 @@ function choose_filter()
         save_img();
 }
 
-getimg();
-upload();
-choose_filter();
-
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+    <meta content="stuff, to, help, search, engines, not" name="keywords">
+    <meta content="What this page is about." name="description">
+    <meta content="Display Webcam Stream" name="title">
+    <title>Camagru</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<style>
+</style>
+</head>
+  
+<body>
+<div id="top_bar">
+    <?php include('top_bar.php');?>
+</div>
+    <br/>
+    <div id="full_body">
+    <div id="body-webcam">
+    <div id="container">
+        <video autoplay="true" id="videoElement"></video>
+    </div>
+    <?php getimg(); ?>
+    <?php choose_filter(); ?>
+    <?php upload(); ?>
+    <form id ="post_cam" method="post" action=""> 
+            <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
+            <input id="data_img" type="hidden" name="data_img" value="">
+    </form>
+    <br><br><br>
+    <canvas id="CANVAS" name="canvas" width="500" height="375"></canvas>
+    <p>Selectionner une image depuis votre ordinateur: </p>
+    <form method="post" action="" enctype="multipart/form-data"> 
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit" id="insert">
+    </form>
+    <canvas id="canvas"></canvas>
+    <div id ="filter">
+        <form action="" method="post">
+        <button name="filter1" value="filt">
+            <img src="test_photo_montage/filter1.png" class="filter">
+        </button>
+        <button name="filter2" value="filt">
+            <img src="test_photo_montage/filter2.png" class="filter">
+        </button>
+        <button name="filter3" value="filt">
+            <img src="test_photo_montage/filter3.png" class="filter">
+        </button>
+        <button name="filter4" value="filt">
+            <img src="test_photo_montage/filter4.png" class="filter">
+        </button>
+        <button name="smiley" value="filt">
+            <img src="test_photo_montage/smiley.png" class="filter">
+        </button>
+        </form>
+    </div> 
+</div> 
+    <div id="right-col">
+        <?php include('get_mini.php');?>
+</div>
+
+</div>
+<?php include('footer.php'); ?>
+<br/>
+    <script src="webcam.js"></script>
+</body>
+</html>
+
