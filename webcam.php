@@ -1,23 +1,34 @@
 <?php
 session_start();
 
+print_r($_SESSION);
+
+if(!isset($_SESSION['login'])){
+    header("Location: login.html");
+ }
+
 function del_old_edit()
 {
     include_once('photo/add_montage.php');
     if (file_exists("uploads/".find_id().".png"))
         unlink("uploads/".find_id().".png");
-}
+ }
+
 
 function getimg()
 {
     if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
         del_old_edit();
+        $_SESSION['photo'] == 1;
         $img = $_POST['data_img'];
         $img = str_replace('data:image/png;base64,', '', $img);
         $img = str_replace(' ', '+', $img);
         $data = base64_decode($img);
         file_put_contents("uploads/photo.png", $data);
-        echo "<div><img src=\"/uploads/photo.png\"></div>";
+        echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
+        
+print_r($_POST);
+
     }
 }
 
@@ -27,7 +38,6 @@ function upload()
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
      $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"]))
     {
         del_old_edit();
@@ -37,26 +47,21 @@ function upload()
         } else {
             $uploadOk = 0;
         }
-    // Check if file already exists
     if (file_exists($target_file)) {
         echo "Sorry, file already exists.";
          $uploadOk = 0;
     }
-    // Check file size
     if ($_FILES["fileToUpload"]["size"] > 2500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
-    // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" ) {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
-    // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
     }  else {
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "uploads/photo.png")) {
                     echo "";
@@ -91,9 +96,7 @@ function choose_filter()
 <html>
 <head>
 <meta charset="utf-8">
-    <meta content="stuff, to, help, search, engines, not" name="keywords">
-    <meta content="What this page is about." name="description">
-    <meta content="Display Webcam Stream" name="title">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Camagru</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 <style>

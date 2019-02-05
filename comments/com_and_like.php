@@ -49,9 +49,9 @@ function add_like($idphoto)
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        $query = $pdo->prepare("UPDATE `photos` SET `like` = `like` + 1");
+        $query = $pdo->prepare("UPDATE `photos` SET `like` = `like` + 1 WHERE `id` = ?");
         try {
-            $query->execute();
+            $query->execute([$idphoto]);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

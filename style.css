@@ -84,16 +84,18 @@ h1 {
   }
   .header {
     position: absolute;
-    height:5vh;
+    height:7vh;
     width: 95vw;
-    padding-top:1.5vh;
-    margin-top:4.5vh;
+    border:1vmin;
+    padding-top:2.5vh;
+    margin-top:2vh;
+    border-radius:2vmin;
     background: rgb(100, 24, 24);
   }
 
   body {
       height: 12vh;
-      font-size: 2vmin;
+      font-size: 2.5vmin;
       font-family: sans-serif;
       color: 0;
   }
@@ -106,7 +108,7 @@ h1 {
   
   .menu > li {
       display: inline;
-      margin-right: 2vw;
+      margin-left:3vmin;
   }
   
   .menu > li:last-of-type {
@@ -129,21 +131,22 @@ h1 {
       padding-top: 4.5vh;
       position: absolute;
       top: -1.5vh;
-      left: -2vh;
+      left: -1vw;
       z-index: 1;
   }
   
   .features-menu {
       display: none;
-      width:8vw;
+      width:12vw;
   }
   
   .features-menu li{
       list-style-position: outside;
       list-style-type: none;
       list-style: none;
-      border-bottom: 2px solid #FFF;
-      padding: 2vh 1.3vw 2vh 1.3vw;
+      border-bottom: 0.1vmin solid #FFF;
+      margin-top:1.5vh;
+      padding: 2vh 1vw 2vh 1vw;
       width: 100%;
   }
   .features-menu li:hover {
@@ -160,7 +163,8 @@ h1 {
 
 
 .login-form {
-    width:13vw;
+    width:20vw;
+    height:20vh;
      margin-top: 7vh;
 }
 
@@ -168,17 +172,17 @@ h1 {
 	position: relative;
 	z-index: 1;
 	background: #FFFFFF;
-	max-width: 360px;
+    width:15vw;
 	margin: auto;
-    padding: 45px;
+    padding: 1.5vmin;
     text-align: center;
 }
 
 .form input {
 	font-family: "Roboto", sans-serif;
 	outline: 0;
-	background: #f2f2f2;
-    width:100%;
+	background: #faf7f7;
+    width:80%;
 	border: 0;
 	margin: 0 0 15px;
 	padding: 15px;
@@ -190,11 +194,11 @@ h1 {
 	text-transform: uppercase;
 	outline: 0;
 	background: lightskyblue;
-	width: 100%;
+	width: 80%;
 	border: 0;
 	padding: 1.5vmin;
 	color: #FFFFFF;
-	font-size: 1.8vmin;
+	font-size: 1.5vmin;
 	cursor: pointer;
 }
 
@@ -205,11 +209,30 @@ h1 {
 }
 
 .change {
-    text-align:center;
-    width:8vw;
-    height:3vh;
-    margin-top:2vh;
+    display: inline-block;
+    padding: 1vmin 2vmin;
+    font-size: 1.5vmin;
+    margin-top:2vmin;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(175, 87, 76);
+    border: none;
+    border-radius: 1vmin;
+    box-shadow: 0 0.8vmin rgb(100, 100, 100);
+  }
+  
+  .change:hover {
+      background-color: rgb(146, 56, 44);
 }
+  
+  .change:active {
+    background-color: rgb(175, 87, 76);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 .form p {
     padding-bottom: 1vh;
@@ -418,3 +441,10 @@ h1 {
     height: 20vh;
 }
 
+.hide { 
+    position:absolute; 
+    top:-1px; 
+    left:-1px; 
+    width:1px; 
+    height:1px; 
+}

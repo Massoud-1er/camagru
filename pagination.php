@@ -55,18 +55,19 @@ OFFSET
         echo $e->getMessage();
     }
     if ($query->rowCount() > 0) {
+        echo '<iframe name="hiddenFrame" class="hide"></iframe>';
         echo '<div class="row">';
         foreach ($check as $k => $val) {
             echo '<div class = "col"><img class ="img_galerie" src="'.($val['photo']).'">';
             if ($_SESSION['login']){
-            echo '<form action="comments/com_and_like.php" method="POST">
+            echo '<form action="comments/com_and_like.php" method="POST" target="hiddenFrame">
             <p>Ajouter un commentaire :</p><input id="commentbox" type="text" name="com"><br>
             <input type="hidden" name="id" value="'.$val['id'].'">
             <input type="hidden" name="login" value="'.$val['login'].'">
             <input type="submit" name="submit" value="Ajouter un commmentaire">
     </form>';
     
-            echo '<form action="comments/com_and_like.php" method="POST">
+            echo '<form action="comments/com_and_like.php" method="POST" target="hiddenFrame">
             '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png"></a>
             <input type="hidden" name="id" value="'.$val['id'].'">
             <input type="hidden" name="submit" value="like">
