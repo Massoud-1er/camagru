@@ -41,7 +41,7 @@ SELECT
 FROM
     `photos`
 ORDER BY
-    date
+    id DESC
 LIMIT
     :limit
 OFFSET
@@ -78,8 +78,6 @@ OFFSET
         }
         echo '</div>';
         echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
-    } else {
-        echo '<p>No results could be displayed.</p>';
     }
 }
 

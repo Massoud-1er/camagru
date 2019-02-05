@@ -3,15 +3,11 @@ header("Location: ../index.php");
 function change_pw()
 {
     include('../config/connection.php');
-    // create var of user, oldpw and newpw
     list($login, $oldpw, $newpw) = array($_POST["login"], $_POST["oldpw"], $_POST["newpw"]);
     try {
-        // Prepare and query SQL for check
-        //first check for login
         $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
         $query->execute([$login]);
         $check = $query->fetchAll();
-        //second check for passwd
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login' AND password=PASSWORD('$oldpw')");
         $query->execute();
         $check2 = $query->fetchAll();
@@ -19,14 +15,11 @@ function change_pw()
         echo $e->getMessage();
     }
     if ($check && $check2) {
-        // Change passwd in SQL
         $query = $pdo->prepare("UPDATE users
                 SET password=PASSWORD('$newpw')
                 WHERE login='$login'");
         try {
             $query->execute();
-            // header("Location: ../index.php");
-            echo("Le mot de passe a bien ete change\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

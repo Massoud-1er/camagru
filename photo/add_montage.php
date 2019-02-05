@@ -40,13 +40,10 @@ function save_img()
         $query = $pdo->prepare("INSERT INTO `photos` (`photo`, `login`, `date`, `like`) VALUES ('$file', '$login', '$date', 1)");
         try {
             $query->execute();
-            echo "la photo a bien été mise dans la db";
         } catch (PDOexception $e) {
-            echo "la photo n'a pas été mise dans la db";
+            echo $e->getMessage();
         }
     }
-    else
-        echo "oups";
 }
 
 if ($_POST['submit'] && $_POST['submit'] == "del"){
