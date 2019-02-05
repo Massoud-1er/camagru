@@ -41,7 +41,7 @@ SELECT
 FROM
     `photos`
 ORDER BY
-    date
+    id DESC
 LIMIT
     :limit
 OFFSET

@@ -51,17 +51,19 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
             $alphacolorxy = imagecolorallocatealpha( $src_im, ( $colorxy >> 16 ) & 0xFF, ( $colorxy >> 8 ) & 0xFF, $colorxy & 0xFF, $alpha ); 
             if(!imagesetpixel( $src_im, $x, $y, $alphacolorxy))
             return false; 
-        } 
-    } 
+        }
+    }
     imagecopy($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h); 
 }
 
 function edit($filt)
 {
     include_once('photo/add_montage.php');
-
+    $pic = "uploads/photo.png";
     $file = "uploads/".find_id().".png";
-    $im = imageCreateFromAny("uploads/photo.png");
+    if (file_exists("uploads/".find_id().".png"))
+        $pic = $file;
+    $im = imageCreateFromAny($pic);
     $image = imagescale($im, 500, 375);
 
     $filter = imagecreatefrompng($filt);
@@ -69,6 +71,8 @@ function edit($filt)
     imagesavealpha($image, true);
 
     imagepng($image, $file);
+    imagedestroy($im);
+    imagedestroy($filter);
     echo "<div><img id = \"up_img\" src=\"$file\"></div>";
     echo "<form action=\"\" method=\"post\">
     <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
