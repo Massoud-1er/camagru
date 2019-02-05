@@ -1,8 +1,9 @@
 <?php
+
 function del_montage($idphoto)
 {
     header('Location: ../my_pics.php');
-    include('../config/connection.php');
+    include('config/connection.php');
     $query = $pdo->prepare("DELETE FROM photos WHERE id =?");
     try {
         $query->execute([$idphoto]);
@@ -31,6 +32,7 @@ function find_id()
 function save_img()
 {
     include('config/connection.php');
+    include_once('webcam.php');
     if (isset($_POST["save"]))
     {
         date_default_timezone_set(UTC);
@@ -46,10 +48,10 @@ function save_img()
             } catch (PDOexception $e) {
                 echo "la photo n'a pas été mise dans la db";
             }
+        if (file_exists("uploads/photo.png"))
+            unlink("uploads/photo.png");
         }
     }
-    else
-        echo "oups";
 }
 
 if ($_POST['submit'] && $_POST['submit'] == "del"){
