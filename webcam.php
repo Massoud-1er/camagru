@@ -1,8 +1,5 @@
 <?php
 session_start();
-
-print_r($_SESSION);
-
 if(!isset($_SESSION['login'])){
     header("Location: login.html");
  }
@@ -32,9 +29,6 @@ function getimg()
         $data = base64_decode($img);
         file_put_contents("uploads/photo.png", $data);
         echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
-        
-print_r($_POST);
-
     }
 }
 
@@ -44,7 +38,7 @@ function upload()
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
      $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    if(isset($_POST["submit"]))
+    if(isset($_POST["submit"]) && $_FILES["fileToUpload"]["name"])
     {
         del_old_edit();
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -85,18 +79,18 @@ function choose_filter()
     include('test_photo_montage/montage.php');
     if (file_exists("uploads/photo.png") || file_exists("uploads/".find_id().".png"))
     {
-    if (isset($_POST["filter1"]))
-        edit("test_photo_montage/filter1.png");
-    if (isset($_POST["filter2"]))
-        edit("test_photo_montage/filter2.png");
-    if (isset($_POST["filter3"]))
-        edit("test_photo_montage/filter3.png");
-    if (isset($_POST["filter4"]))
-        edit("test_photo_montage/filter4.png");
-    if (isset($_POST["filter5"]))
-        edit("test_photo_montage/filter5.png");
-    if (isset($_POST["save"])){
-        save_img();
+        if (isset($_POST["filter1"]))
+            edit("test_photo_montage/filter1.png");
+        if (isset($_POST["filter2"]))
+            edit("test_photo_montage/filter2.png");
+        if (isset($_POST["filter3"]))
+            edit("test_photo_montage/filter3.png");
+        if (isset($_POST["filter4"]))
+            edit("test_photo_montage/filter4.png");
+        if (isset($_POST["filter5"]))
+            edit("test_photo_montage/filter5.png");
+        if (isset($_POST["save"])){
+            save_img();
     }
 }
 }
@@ -161,6 +155,8 @@ function choose_filter()
         </button>
         </form>
     </div> 
+        <form action="" method="post">
+    <input type="submit" name="save" id="save" value="save"></form>
 </div> 
     <div id="right-col">
         <?php include('get_mini.php');?>
