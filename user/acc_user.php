@@ -5,6 +5,10 @@ function change_pw()
     include('../config/connection.php');
     list($login, $oldpw, $newpw) = array($_POST["login"], $_POST["oldpw"], $_POST["newpw"]);
     try {
+        if (!is_valid_password($newpw)){
+            echo "Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres";
+            exit();
+        }
         $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
         $query->execute([$login]);
         $check = $query->fetchAll();
