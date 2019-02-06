@@ -120,6 +120,8 @@ function choose_filter()
     <?php getimg(); ?>
     <?php choose_filter(); ?>
     <?php upload(); ?>
+    <form action="" method="post">
+    <input type="submit" name="save" class="insert_save" value="save"></form>
     <form id ="post_cam" method="post" action=""> 
     <input class ="insert_take" name="getimg" value="Prendre une photo" type="submit" onclick="myFunction()">
             <input id="data_img" type="hidden" name="data_img" value="">
@@ -132,7 +134,9 @@ function choose_filter()
     <input class ="insert" type="file" name="fileToUpload" id="fileToUpload">
     <input class ="insert" type="submit" value="Upload" name="submit">
     <input id="data_img" type="hidden" name="submit" value="Upload Image">
-    </form></div>
+    </form>
+    
+</div>
     <canvas id="canvas"></canvas>
     <div id ="filter">
         <form action="" method="post">
@@ -152,9 +156,9 @@ function choose_filter()
             <img src="test_photo_montage/filter5.png" class="filter">
         </button>
         </form>
+        
     </div> 
-        <form action="" method="post">
-    <input type="submit" name="save" id="save" value="save"></form>
+        
 </div> 
     <div id="right-col">
         <?php include('get_mini.php');?>

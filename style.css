@@ -808,6 +808,33 @@ h1 {
         box-shadow: 0 5px #666;
         transform: translateY(4px);
       }
+
+      .insert_save {
+        position: absolute;
+        padding: 1vmin 2vmin;
+        font-size: 3.5vmin;
+        margin-top:38vh;
+        margin-left:55vw;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: rgb(49, 178, 218);
+        border: none;
+        border-radius: 1vmin;
+        box-shadow: 0 0.4vmin rgb(100, 100, 100);
+      }
+      
+      .insert_save:hover {
+          background-color: rgb(36, 76, 185);
+    }
+      
+      .insert_save:active {
+        background-color: rgb(49, 178, 218);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
       #right-col{
          display:none;
       }
