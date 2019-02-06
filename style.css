@@ -2,13 +2,16 @@
 **  MAIN
 */
 
-html, body {
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
     background-color: white;
-    max-width: 100%;
-    max-height: 100%;
-    min-height: 100%;
-    background-image: url('https://www.laverdure.fr/img/c/3468.jpg');
-    background-size: 100%;    
+    width:100vw;
+    height:100vh;
+    overflow:hidden
 }
 
 h1 {
@@ -40,6 +43,7 @@ h1 {
 #middle-col {
     background: white;
     padding:2vmin;
+    margin-top:5vh;
     width: 83vw;
     height: 70vh;
     overflow-y: scroll;
@@ -49,7 +53,7 @@ h1 {
     position: absolute;
     background: transparent;
     margin-left: 84vw;
-    margin-top: -70vh;
+    margin-top: -80vh;
     width: 11vw;
     height: 70vh;
 }
@@ -62,21 +66,13 @@ h1 {
 }
 
 #paging {
-    position: absolute;
-    margin-top:15vh;
-    margin-left:38vw;
+    margin-top:10vh;
     text-align:center;
 }
 
 /*
 **  MENU 
 */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
   
   #welcome {
       font-size:2.5vmin;
@@ -87,14 +83,10 @@ h1 {
     height:7vh;
     width: 95vw;
     border:1vmin;
-    padding-top:2.5vh;
     margin-top:2vh;
-    border-radius:2vmin;
-    background: rgb(100, 24, 24);
   }
 
   body {
-      height: 12vh;
       font-size: 2.5vmin;
       font-family: sans-serif;
       color: 0;
@@ -105,7 +97,10 @@ h1 {
       text-decoration: none;
       text-align: center;
   }
-  
+  .menu{
+    margin-bottom:1vh;
+
+  }
   .menu > li {
       display: inline;
       margin-left:3vmin;
@@ -118,44 +113,38 @@ h1 {
   .dropdown {
       position: relative;
   }
+  
   .dropdown > span{
       position: relative;
       z-index: 2;
       cursor: pointer;
   }
-  
   .dropdown:hover .features-menu{
       display: flex; 
       flex-direction: column;
-      background: rgb(100, 24, 24);
       padding-top: 4.5vh;
       position: absolute;
       top: -1.5vh;
       left: -1vw;
       z-index: 1;
   }
-  
+
   .features-menu {
       display: none;
       width:12vw;
   }
+
   
   .features-menu li{
-      list-style-position: outside;
       list-style-type: none;
       list-style: none;
-      border-bottom: 0.1vmin solid #FFF;
-      margin-top:1.5vh;
-      padding: 2vh 1vw 2vh 1vw;
+      padding: 2vh 1vw 1vh 0vw;
       width: 100%;
   }
-  .features-menu li:hover {
-      background-color: rgb(155, 52, 52);
-  }
-  
-  .features-menu li:last-of-type {
-      border-bottom: none;
-  }
+   
+   ul li a:hover, ul li a:focus {
+    color:rgb(0, 0, 0);
+   }
 
 /*
 **  FORM CSS
@@ -218,18 +207,18 @@ h1 {
     text-decoration: none;
     outline: none;
     color: #fff;
-    background-color: rgb(175, 87, 76);
+    background-color: rgb(49, 178, 218);
     border: none;
     border-radius: 1vmin;
-    box-shadow: 0 0.8vmin rgb(100, 100, 100);
+    box-shadow: 0 0.6vmin rgb(100, 100, 100);
   }
   
   .change:hover {
-      background-color: rgb(146, 56, 44);
+      background-color: rgb(36, 76, 185);
 }
   
   .change:active {
-    background-color: rgb(175, 87, 76);
+    background-color: rgb(49, 178, 218);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
@@ -246,15 +235,21 @@ h1 {
     height:2.5vh;
     width: 1.2vw;
 }
+#get_likes{
+    font-size:2vmin;
+    margin-top:5vh;
+}
 
 #commentbox {
-    margin:auto;
+    position:absolute;
     width:50%;
-    width:15vw;
-    height:5vh;
+    width:12vw;
+    height:7vh;
+    margin-left:-5.7vw;
 }
 
 .comz{
+    margin-top:5vh;
     float:left;
     width: 60%;
 }
@@ -265,7 +260,6 @@ h1 {
 }
 .display_com{
     padding-left: 2vw;
-    width:40%;
     overflow-y: scroll;
 }
 .one_com {
@@ -274,6 +268,11 @@ h1 {
     position:relative;
     width:80%;
     padding:3vmin;
+}
+.insert_com{
+    display:inline-block;
+    position:absolute;
+    margin-left:-5.7vw;
 }
 
 
@@ -284,6 +283,7 @@ h1 {
 #body-webcam{
     background: white;
     padding:2vmin;
+    margin-top:5vh;
     width: 83vw;
     height: 70vh;
 }
@@ -378,7 +378,103 @@ h1 {
     height: 9vh;
 }
 
+.insert {
+    display: inline-block;
+    padding: 1vmin 2vmin;
+    font-size: 1.5vmin;
+    margin-top:2vmin;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(49, 178, 218);
+    border: none;
+    border-radius: 1vmin;
+    box-shadow: 0 0.4vmin rgb(100, 100, 100);
+  }
+  
+  .insert:hover {
+      background-color: rgb(36, 76, 185);
+}
+  
+  .insert:active {
+    background-color: rgb(49, 178, 218);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
+
+  .insert_take {
+    display: inline-block;
+    padding: 1vmin 2vmin;
+    font-size: 1.5vmin;
+    margin-top:13vh;
+    margin-left:12vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(49, 178, 218);
+    border: none;
+    border-radius: 1vmin;
+    box-shadow: 0 0.4vmin rgb(100, 100, 100);
+  }
+  
+  .insert_take:hover {
+      background-color: rgb(36, 76, 185);
+}
+  
+  .insert_take:active {
+    background-color: rgb(49, 178, 218);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+  .insert_save {
+    position: absolute;
+    padding: 1vmin 2vmin;
+    font-size: 1.5vmin;
+    margin-top:38vh;
+    margin-left:55vw;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(49, 178, 218);
+    border: none;
+    border-radius: 1vmin;
+    box-shadow: 0 0.4vmin rgb(100, 100, 100);
+  }
+  
+  .insert_save:hover {
+      background-color: rgb(36, 76, 185);
+}
+  
+  .insert_save:active {
+    background-color: rgb(49, 178, 218);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  .insert_com {
+      width:12vw;
+    font-size: 1.5vmin;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(49, 178, 218);
+  }
+
+  .insert_com:hover {
+    background-color: rgb(36, 76, 185);
+}
+
+.insert_com:active {
+  background-color: rgb(49, 178, 218);
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
 
 /*
 **  Photos
@@ -396,6 +492,8 @@ h1 {
     width: 11vw;
     height: 13vh;
 }
+
+
 .img_gal {
     margin-left: auto;
     margin-right: auto;
@@ -412,7 +510,8 @@ h1 {
     height: 20vh;   
 }
 #delete {
-    margin-left:0.3vw;
+    margin-left:3vw;
+    margin-top:-0.3vh;
     height:2.5vh;
     width: 1.2vw;
 }
@@ -422,21 +521,25 @@ h1 {
 }
 
 .row {
-    margin-left:7.5vw;
+    margin-left:10vw;
+    margin-top:4vh;
     vertical-align: top;
     width: 85%;
     height: 60vh;   
 }
 
-.col {
+.col0, .col1, .col2, .col3, .col4 {
     float:left;
     width:33%;
     text-align: center;
-    height:38vh;
+    height:36vh;
+}
+
+.col3 {
+    margin-left:10vw;
 }
 
 .img_galerie {
-    margin-top: 1vh;
     width:15vw;
     height: 20vh;
 }
@@ -447,4 +550,359 @@ h1 {
     left:-1px; 
     width:1px; 
     height:1px; 
+}
+
+
+@media screen and (max-width: 1300px) {
+
+    body{
+        font-size:3vmin;
+    }
+    .login-form {
+        width:75vw;
+        height:50vh;
+        margin-top: 7vh;
+    }
+    
+    .form {
+        z-index: 1;
+        width:75vw;
+        height:25vh;
+        margin-top: 7vh;
+        background: transparent;
+        margin: auto;
+        text-align: center;
+        margin-bottom:20vmin;
+    }
+    
+    .form input {
+        font-family: "Roboto", sans-serif;
+        outline: 0;
+        background: #faf7f7;
+        width:100%;
+        border: 0;
+        padding: 15px;
+        box-sizing: border-box;
+        font-size: 4vmin;
+    }
+    .form #login {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        background: lightskyblue;
+        width: 100%;
+        border: 0;
+        padding: 1.5vmin;
+        color: #FFFFFF;
+        font-size: 4vmin;
+        cursor: pointer;
+    }
+    .message{
+        font-size:4vmin;
+    }
+    .form p {
+        font-size:3.5vmin;
+        padding-bottom: 1vh;
+    }
+
+    .change {
+        display: inline-block;
+        padding: 1vmin 2vmin;
+        font-size: 3.5vmin;
+        width:45vw;
+        margin-top:2vmin;
+        margin-bottom:3vmin;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: rgb(49, 178, 218);
+        border: none;
+        border-radius: 1vmin;
+        box-shadow: 0 0.6vmin rgb(100, 100, 100);
+      }
+
+/* WEBCAM SMALL SCREEN SIZE */
+
+      #body-webcam{
+        background: white;
+        padding:2vmin;
+        margin-top:5vh;
+        width: 83vw;
+        height: 70vh;
+    }
+    #container {
+        margin-left:15vw;
+        width: 60vw;
+        height: 35vh;
+        border: 0.5vmin  #333 solid;
+        position: absolute; 
+    }
+    #canvas {
+        visibility: hidden;
+        width: 25vw;
+        height: 35vh;
+        position: absolute;
+    }
+    #CANVAS {
+        visibility: hidden;
+        width: 25vw;
+        height: 35vh;
+    }
+    
+    #post_cam {
+        margin-top:25vh;
+        position: absolute;
+    }
+    #cam_pic{
+        margin-left:15vw;
+        width: 60vw;
+        height: 35vh;
+        border: 0.5vmin  #333 solid;
+        position: absolute; 
+    }
+    #cam_montage{
+        margin-left: 45vw;
+        width: 25vw;
+        height: 35vh;
+        position: absolute; 
+    }
+    #up_img {
+        margin-left:15vw;
+        width: 60vw;
+        height: 35vh;
+        border: 0.5vmin  #333 solid;
+        position: absolute; 
+    }
+    
+    #save{
+        color:black;
+        margin-left: 75vw;
+        margin-top: 17vh;
+        position: absolute; 
+    }
+    
+    #videoElement {
+        width:100%;
+        height:100%;
+    }
+    #header {
+        width: 75%;
+        height: 160px;
+        background-image: url('https://www.destockpro-france.com/boutique/images_produits/05546-30-z.jpg');
+        border-radius: 35px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #pic {
+        width: 250px;
+        height: 90px;
+        border-radius: 50px;
+        background-color: blanchedalmond;
+        margin-top: 500px;
+    }
+    
+    #deco {
+        width: 11vw;
+        height: 4vh;
+        background-color: red;
+        border-radius: 15px;
+        float: top;
+        float: right;
+        text-align: center;
+        font-size: 1.6vw;
+    }
+    
+    #filter {
+        margin-left:20vw;
+        margin-top:2vh;
+        position:absolute;
+        width: 60vw;
+    }
+    .filter {
+        width: 6vw;
+        height: 9vh;
+    }
+    #lower{
+        position:absolute;
+        margin-top:15vh;
+    }
+    .insert {
+        display: inline-block;
+        padding: 1vmin 2vmin;
+        font-size: 3.5vmin;
+        margin-top:2vmin;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: rgb(49, 178, 218);
+        border: none;
+        border-radius: 1vmin;
+        box-shadow: 0 0.4vmin rgb(100, 100, 100);
+      }
+      
+      .insert:hover {
+          background-color: rgb(36, 76, 185);
+    }
+      
+      .insert:active {
+        background-color: rgb(49, 178, 218);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+    
+    
+      .insert_take {
+        display: inline-block;
+        padding: 1vmin 2vmin;
+        font-size: 3.5vmin;
+        margin-top:13vh;
+        margin-left:12vw;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: rgb(49, 178, 218);
+        border: none;
+        border-radius: 1vmin;
+        box-shadow: 0 0.4vmin rgb(100, 100, 100);
+      }
+      
+      .insert_take:hover {
+          background-color: rgb(36, 76, 185);
+    }
+      
+      .insert_take:active {
+        background-color: rgb(49, 178, 218);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+    
+      .insert_save {
+        position: absolute;
+        padding: 1vmin 2vmin;
+        font-size: 3.5vmin;
+        margin-top:38vh;
+        margin-left:55vw;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: rgb(49, 178, 218);
+        border: none;
+        border-radius: 1vmin;
+        box-shadow: 0 0.4vmin rgb(100, 100, 100);
+      }
+      
+      .insert_save:hover {
+          background-color: rgb(36, 76, 185);
+    }
+      
+      .insert_save:active {
+        background-color: rgb(49, 178, 218);
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+      #right-col{
+         display:none;
+      }
+      .montage {
+        margin-left: 1vw;
+        width: 12vw;
+        height: 18vh;
+        border: 0.35vmin solid black;
+    }
+    /* galerie small resolution */
+
+    .row {
+    margin-top:4vh;
+    margin-left:0vw;
+    vertical-align: top;
+    width: 100%;
+    height: 60vh;   
+    }
+
+.col0, .col1 {
+    display: inline-block;
+    width:50%;
+    text-align: center;
+    height:30vh;
+}
+.col2 {
+    margin-top:5vh;
+    margin-left:25vw;
+    width:50%;
+    text-align: center;
+    height:30vh;
+}
+.col3, .col4 {
+    display:none;
+}
+
+.img_galerie{
+    width:75%;
+    height: 75%;
+    }
+    /* like & com */
+
+#like {
+    margin-top:8vh;
+    margin-left:4vw;
+    height:4vh;
+    width: 4vw;
+}
+
+#get_likes{
+    display:none;
+}
+
+#commentbox {
+    position:absolute;
+    width:50%;
+    width:20vw;
+    height:4vh;
+    margin-top:3vh;
+    margin-left:-12vw;
+}
+
+.comz{
+    margin-top:5vh;
+    float:left;
+    width: 60%;
+}
+.img_com{ 
+    height:100%;
+    width:100%;
+    max-height:66vh;
+}
+.display_com{
+    padding-left: 2vw;
+    overflow-y: scroll;
+}
+.one_com {
+    margin:auto;
+    text-align:center;
+    position:relative;
+    width:80%;
+    padding:3vmin;
+}
+.insert_com{
+    display:inline-block;
+    position:absolute;
+    margin-left:-15vw;
+    margin-bottom:1vh;
+    width:30vw;
+    height:3vh;
+    font-size:3vmin;
+}
+#paging {
+    margin-top:10vh;
+    font-size:4vmin;
+    text-align:center;
+}
 }

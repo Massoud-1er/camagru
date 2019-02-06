@@ -60,7 +60,7 @@ function add_like($idphoto)
     }
     $pdo = null;
 }
-if ($_POST["submit"] == "Ajouter un commmentaire" && $_POST['id'] && $_POST['com'] && $_POST['login']) {
+if ($_POST["submit"] == "Commenter" && $_POST['id'] && $_POST['com'] && $_POST['login']) {
     add_com($_POST['id'], $_POST['login']);
 } elseif ($_POST["submit"] == "like" && $_POST['id']) {
     add_like($_POST['id']);

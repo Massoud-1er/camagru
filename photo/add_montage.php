@@ -3,7 +3,7 @@
 function del_montage($idphoto)
 {
     header('Location: ../my_pics.php');
-    include('config/connection.php');
+    include('../config/connection.php');
     $query = $pdo->prepare("DELETE FROM photos WHERE id =?");
     try {
         $query->execute([$idphoto]);

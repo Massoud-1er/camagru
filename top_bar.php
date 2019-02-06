@@ -2,12 +2,12 @@
 echo '<p id= "welcome"><a href="index.php">Camagru</a></p>
     <div class="header">
                             <ul class="menu">
-                            <li class="dropdown"><span>Mon compte</span>
+                            <li class="dropdown"><span>Voir mon compte</span>
   <ul class="features-menu">' ?>
       <?php if ($_SESSION['logged_on_user'] != 1) : ?>
-      <li><a href="login.html">Se connecter</a></li>'
+      <li><a href="login.html">Se connecter</a></li>
       <?php endif;?>
-      <?php echo '<li><a href="my_account.php">Voir mon compte</a></li>' ?>
+      <?php echo '<li><a href="my_account.php">Mon compte</a></li>' ?>
       <?php if ($_SESSION['logged_on_user'] == 1) : ?>
       <li><a href="user/logout_user.php">Se deconnecter</a></li>
       <?php endif;?>
@@ -20,5 +20,5 @@ echo '<p id= "welcome"><a href="index.php">Camagru</a></p>
   </ul>
 </li>
 </ul>
-</div>';
+<hr></div>';
 ?>

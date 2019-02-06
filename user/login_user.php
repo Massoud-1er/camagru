@@ -28,7 +28,6 @@ function find_id()
             echo $e->getMessage();
         }
         if ($check) {
-            print_r("dede");
             $_SESSION['login'] = $login;
             $_SESSION["password"] = $password;
             $_SESSION['logged_on_user'] = 1;

@@ -2,7 +2,7 @@
 
 function imageCreateFromAny($filepath) { 
     $type = exif_imagetype($filepath);
-    $allowedTypes = array(1, 2, 3,); 
+    $allowedTypes = array(1, 2, 3); 
     if (!in_array($type, $allowedTypes)) { 
         return false; 
     } 
@@ -72,10 +72,8 @@ function edit($filt)
     imagepng($image, $file);
     imagedestroy($im);
     imagedestroy($filter);
-    // if (file_exists("uploads/photo.png"))
-    //     unlink("uploads/photo.png");
     echo "<div><img id = \"up_img\" src=\"$file\"></div>";
-    // echo "<form action=\"\" method=\"post\">
-    // <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
+    echo "<form  action=\"\" method=\"post\">
+    <input type=\"submit\" name=\"save\" class =\"insert_save\" value=\"save\"></form>";
 }
 ?>

@@ -16,7 +16,7 @@ body {
 	position: relative;
 	z-index: 1;
 	background: #FFFFFF;
-	max-width: 18vw;
+	max-width: 20vw;
 	margin: 0 0 10vmin;
 	padding: 5vmin;
 	height: 50vh;
@@ -29,7 +29,7 @@ body {
 
 .form p {
 	margin: 1.5vmin 0 1.5vmin;
-	font-size: 2vmin;
+	font-size: 2.5vmin;
 }
 
 .form input {
@@ -41,7 +41,7 @@ body {
 	margin: 0 0 1.2vmin;
 	padding: 1.5vmin;
 	box-sizing: border-box;
-	font-size: 14px;
+	font-size: 2.5vmin;
 }
 .form #login {
 	font-family: "Roboto", sans-serif;
@@ -53,7 +53,7 @@ body {
 	padding: 1.5vmin;
 	margin-top: 1vh;
 	color: #FFFFFF;
-	font-size: 1.5vmin;
+	font-size: 2vmin;
 	cursor: pointer;
 }
 
@@ -62,3 +62,25 @@ body {
 	color: #b3b3b3;
 	font-size: 1.5vmin;
 }
+
+
+@media screen and (max-width: 1300px) {
+	.form{
+		margin-left:-18vw;
+		z-index: 1;
+		background: #FFFFFF;
+		width:65vw;
+		max-width: 65vw;
+		height: 50vh;
+		text-align: center;
+		border-style: solid;
+		border-width: 0.25vmin;
+		border-color:rgb(225, 202, 148);
+		background-color:rgb(255, 243, 220);
+	}
+	.form .message {
+		margin: 1.5vmin 0 0;
+		color: #b3b3b3;
+		font-size: 4vmin;
+	}
+    }
