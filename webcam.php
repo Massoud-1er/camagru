@@ -111,10 +111,6 @@ function choose_filter()
 <div id="top_bar">
     <?php include('top_bar.php');?>
 </div>
-    <?php 
-    // del_old_edit();
-    // del_old_photo();
-    ?>
     <br/>
     <div id="full_body">
     <div id="body-webcam">
@@ -125,16 +121,18 @@ function choose_filter()
     <?php choose_filter(); ?>
     <?php upload(); ?>
     <form id ="post_cam" method="post" action=""> 
-    <input id="getimg" name="getimg" value="getimg" type="submit" onclick="myFunction()">
+    <input class ="insert_take" name="getimg" value="Prendre une photo" type="submit" onclick="myFunction()">
             <input id="data_img" type="hidden" name="data_img" value="">
+            <input id="data_img" type="hidden" name="getimg" value="getimg">
     </form>
-    <br><br><br>
+    <br><br><br><br><br>
     <canvas id="CANVAS" name="canvas" width="500" height="375"></canvas>
-    <p>Selectionner une image depuis votre ordinateur: </p>
+    <div id ="lower"><p>Selectionnez une image depuis votre ordinateur: </p>
     <form method="post" action="" enctype="multipart/form-data"> 
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit" id="insert">
-    </form>
+    <input class ="insert" type="file" name="fileToUpload" id="fileToUpload">
+    <input class ="insert" type="submit" value="Upload" name="submit">
+    <input id="data_img" type="hidden" name="submit" value="Upload Image">
+    </form></div>
     <canvas id="canvas"></canvas>
     <div id ="filter">
         <form action="" method="post">
