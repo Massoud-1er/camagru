@@ -3,6 +3,23 @@ session_start();
 
 $allowed = array("mail", "password", "photos", "forgot", "notif");
 
+function my_last_pics()
+{
+    include('config/connection.php');
+    try {
+        $query = $pdo->prepare("SELECT * FROM `photos` WHERE `login` = ? ORDER BY id DESC limit 3");
+        $query->execute([$_SESSION['login']]);
+        $total = $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    if ($query->rowCount() > 0) {
+        foreach ($total as $k => $val) {
+            echo '<div style="display:inline-block;margin-top:2vh;margin-left:12.5vw;"><a href="my_pics.php"><img class ="montage" src="'.($val['photo']).'"></a></div>';
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,16 +44,11 @@ $allowed = array("mail", "password", "photos", "forgot", "notif");
         <?php if (in_array($_POST['change'], $allowed)) : ?>
         <?php include("change/change_".$_POST['change'].".html");?>
         <?php endif;?>
-            <!-- <?php include ('change_mail.html');?> -->
-            <div><a href="my_pics.php">Voir mes photos</a></div>
-                                </div>
-        <!-- <div id="left-col">
-            <a href="#">Categorie 1</a>
-            <a href="#">Categorie 2</a>
-            <a href="#">Categorie 3</a>
-            <a href="#">Categorie 4</a>
-            <a href="#">Categorie 5</a>
-    </div> -->
+        <?php if (!$_POST['change']) : ?>
+            <div style="text-align:center;"><a  href="my_pics.php">Voir mes photos</a></div>
+        <?php my_last_pics(); ?>
+        <?php endif;?>
+        </div>
     <div id="right-col">
     </div> 
                                 </div>         

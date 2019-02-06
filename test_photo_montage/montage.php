@@ -1,7 +1,7 @@
 <?php
 
 function imageCreateFromAny($filepath) { 
-    $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize() 
+    $type = exif_imagetype($filepath);
     $allowedTypes = array( 
         1,  // [] gif 
         2,  // [] jpg 
@@ -65,7 +65,6 @@ function edit($filt)
         $pic = $file;
     else
         $pic = "uploads/photo.png";
-    print_r($pic);
     $im = imageCreateFromAny($pic);
     $image = imagescale($im, 500, 375);
 
@@ -80,7 +79,7 @@ function edit($filt)
     // if (file_exists("uploads/photo.png"))
     //     unlink("uploads/photo.png");
     echo "<div><img id = \"up_img\" src=\"$file\"></div>";
-    echo "<form action=\"\" method=\"post\">
-    <input type=\"submit\" name=\"save\" id=\"save\" value=\"save\"></form>";
+    echo "<form  action=\"\" method=\"post\">
+    <input type=\"submit\" name=\"save\" class =\"insert_save\" value=\"save\"></form>";
 }
 ?>

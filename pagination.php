@@ -54,28 +54,29 @@ OFFSET
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+    $i = 0;
     if ($query->rowCount() > 0) {
         echo '<iframe name="hiddenFrame" class="hide"></iframe>';
         echo '<div class="row">';
         foreach ($check as $k => $val) {
-            echo '<div class = "col"><img class ="img_galerie" src="'.($val['photo']).'">';
+            echo '<div class = "col'.$i.'"><img class ="img_galerie" src="'.($val['photo']).'">';
             if ($_SESSION['login']){
-            echo '<form action="comments/com_and_like.php" method="POST" target="hiddenFrame">
-            <p>Ajouter un commentaire :</p><input id="commentbox" type="text" name="com"><br>
+            echo '<div class="block_com"><form  action="comments/com_and_like.php" method="POST" target="hiddenFrame">
+            <input class="insert_com" type="submit" name="submit" value="Commenter"><br><input id="commentbox" type="text" name="com"><br>
             <input type="hidden" name="id" value="'.$val['id'].'">
             <input type="hidden" name="login" value="'.$val['login'].'">
-            <input type="submit" name="submit" value="Ajouter un commmentaire">
+            
     </form>';
     
-            echo '<form action="comments/com_and_like.php" method="POST" target="hiddenFrame">
-            '.get_likes($val['id']).'<input id ="like" type="image" src="../pics/like.png"></a>
+            echo '<form style="display:inline-block;position:absolute;margin-left:7vw;margin-top:-6.5vh;" action="comments/com_and_like.php" method="POST" target="hiddenFrame">
+            <div id="get_likes">'.get_likes($val['id']).'</div><input id ="like" type="image" src="../pics/like.png"></a>
             <input type="hidden" name="id" value="'.$val['id'].'">
             <input type="hidden" name="submit" value="like">
 
-        </form>';
+        </form></div>';
             }
         echo '</div>';
-
+            $i++;
         }
         echo '</div>';
         echo '<br><br><div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
