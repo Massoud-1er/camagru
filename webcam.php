@@ -3,24 +3,21 @@ session_start();
 if(!isset($_SESSION['login'])){
     header("Location: login.html");
  }
-
 function del_old_edit()
 {
     include_once('photo/add_montage.php');
     if (file_exists("uploads/".find_id().".png"))
         unlink("uploads/".find_id().".png");
  }
-
-
 function del_old_photo()
 {
     if (file_exists("uploads/photo.png"))
         unlink("uploads/photo.png");
 }
-
 function getimg()
 {
     if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
+        print_r($_POST);
         del_old_edit();
         $_SESSION['photo'] == 1;
         $img = $_POST['data_img'];
@@ -31,7 +28,6 @@ function getimg()
         echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
     }
 }
-
 function upload()
 {
     $target_dir = "uploads/";
@@ -72,7 +68,6 @@ function upload()
     echo "<div><img id=\"up_img\" src=\"/uploads/photo.png\"></div>";
     }
 }
-
 function choose_filter()
 {
     include_once('photo/add_montage.php');
@@ -94,7 +89,6 @@ function choose_filter()
     }
 }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -120,6 +114,8 @@ function choose_filter()
     <?php getimg(); ?>
     <?php choose_filter(); ?>
     <?php upload(); ?>
+    <form action="" method="post">
+    <input type="submit" name="save" class="insert_save" value="save"></form>
     <form id ="post_cam" method="post" action=""> 
     <input class ="insert_take" name="getimg" value="Prendre une photo" type="submit" onclick="myFunction()">
             <input id="data_img" type="hidden" name="data_img" value="">
@@ -132,7 +128,9 @@ function choose_filter()
     <input class ="insert" type="file" name="fileToUpload" id="fileToUpload">
     <input class ="insert" type="submit" value="Upload" name="submit">
     <input id="data_img" type="hidden" name="submit" value="Upload Image">
-    </form></div>
+    </form>
+    
+</div>
     <canvas id="canvas"></canvas>
     <div id ="filter">
         <form action="" method="post">
@@ -152,9 +150,9 @@ function choose_filter()
             <img src="test_photo_montage/filter5.png" class="filter">
         </button>
         </form>
+        
     </div> 
-        <form action="" method="post">
-    <input type="submit" name="save" id="save" value="save"></form>
+        
 </div> 
     <div id="right-col">
         <?php include('get_mini.php');?>
@@ -166,4 +164,3 @@ function choose_filter()
     <script src="webcam.js"></script>
 </body>
 </html>
-
