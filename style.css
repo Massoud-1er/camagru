@@ -202,6 +202,7 @@ h1 {
     padding: 1vmin 2vmin;
     font-size: 1.5vmin;
     margin-top:2vmin;
+    min-width: 15vw;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -505,7 +506,8 @@ h1 {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5vmin;
+    margin-top:-10vh;
+    padding-bottom: 5vmin;
     width: 15vw;
     height: 20vh;   
 }
@@ -567,7 +569,7 @@ h1 {
     .form {
         z-index: 1;
         width:75vw;
-        height:25vh;
+        height:32vh;
         margin-top: 7vh;
         background: transparent;
         margin: auto;
@@ -598,6 +600,7 @@ h1 {
         cursor: pointer;
     }
     .message{
+        margin-top:6vh;
         font-size:4vmin;
     }
     .form p {
