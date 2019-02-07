@@ -5,6 +5,10 @@ function change_pw()
     include('../config/connection.php');
     list($login, $oldpw, $newpw) = array($_POST["login"], $_POST["oldpw"], $_POST["newpw"]);
     try {
+        if (!is_valid_password($newpw)){
+            echo "Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres";
+            exit();
+        }
         $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
         $query->execute([$login]);
         $check = $query->fetchAll();
@@ -18,6 +22,61 @@ function change_pw()
         $query = $pdo->prepare("UPDATE users
                 SET password=PASSWORD('$newpw')
                 WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    } elseif (!$check) {
+        echo("Cet utilisateur n'existe pas\n");
+    } elseif (!$check2) {
+        echo("Le mot de passe ne correspond pas a cet utilisateur\n");
+    }
+    $pdo = null;
+}
+
+function change_login()
+{
+    include('../config/connection.php');
+    list($login, $passwd, $newlogin) = array($_POST["login"], $_POST["passwd"], $_POST["newlogin"]);
+    try {
+        $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
+        $query->execute([$login]);
+        $check = $query->fetchAll();
+        $query = $pdo->prepare("SELECT * FROM users WHERE login=? AND password=PASSWORD('$passwd')");
+        $query->execute([$login]);
+        $check2 = $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    if ($check && $check2) {
+        $query = $pdo->prepare("UPDATE `users`
+                SET login='$newlogin'
+                WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `comments`
+                SET login='$newlogin'
+                WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `likes`
+        SET login='$newlogin'
+        WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `photos`
+SET login='$newlogin'
+WHERE login='$login'");
         try {
             $query->execute();
         } catch (PDOException $e) {
@@ -151,11 +210,12 @@ function reset_passwd()
 
 if ($_POST["submit"] == "Modifier son mot de passe" && $_POST["login"] && $_POST["newpw"] && $_POST["oldpw"]) {
     change_pw();
+} elseif ($_POST["submit"] == "Modifier son login" && $_POST["login"] && $_POST["newlogin"] && $_POST["passwd"]) {
+    change_login();
 } elseif ($_POST["submit"] == "Modifier son adresse e-mail" && $_POST["login"] && $_POST["oldmail"] && $_POST["newmail"]) {
     change_mail();
 } elseif ($_POST["submit"] == "Desactiver les notifcations" && $_POST["login"] && $_POST["mail"]) {
     change_notif();
-}
-else if ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]){
+} elseif ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]) {
     reset_passwd();
 }

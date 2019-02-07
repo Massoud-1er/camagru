@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$allowed = array("mail", "password", "photos", "forgot", "notif");
+$allowed = array("mail", "password", "photos", "forgot", "notif", "login");
 
 function my_last_pics()
 {

@@ -60,7 +60,10 @@ if (isset($_POST["email"]) && isset($_POST["action"]) &&
     $pass2 = strip_tags($_POST["pass2"]);
     $mail = $_POST["email"];
     $curDate = date("Y-m-d H:i:s");
-
+    if (!is_valid_password($pass1)){
+        echo "Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres";
+        exit();
+    }
     if ($pass1!=$pass2) {
         $error.= "<p>Password do not match, both password should be same.<br /><br /></p>";
     }

@@ -111,15 +111,14 @@ function choose_filter()
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
-    <?php getimg(); ?>
+    <?php print_r($_POST);getimg(); ?>
     <?php choose_filter(); ?>
     <?php upload(); ?>
     <form action="" method="post">
     <input type="submit" name="save" class="insert_save" value="save"></form>
     <form id ="post_cam" method="post" action=""> 
-    <input class ="insert_take" name="getimg" value="Prendre une photo" type="submit" onclick="myFunction()">
-            <input id="data_img" type="hidden" name="data_img" value="">
-            <input id="data_img" type="hidden" name="getimg" value="getimg">
+    <input class ="insert_take" name="getimg" value="getimg" type="submit" onclick='myFunction()'>
+    <input class="data_img" type="hidden" name="data_img" value="">
     </form>
     <br><br><br><br><br>
     <canvas id="CANVAS" name="canvas" width="500" height="375"></canvas>
@@ -127,7 +126,7 @@ function choose_filter()
     <form method="post" action="" enctype="multipart/form-data"> 
     <input class ="insert" type="file" name="fileToUpload" id="fileToUpload">
     <input class ="insert" type="submit" value="Upload" name="submit">
-    <input id="data_img" type="hidden" name="submit" value="Upload Image">
+    <input class="data_im" type="hidden" name="submit" value="Upload Image">
     </form>
     
 </div>
