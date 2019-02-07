@@ -7,8 +7,8 @@ echo '<p id= "welcome"><a href="index.php">Camagru</a></p>
       <?php if ($_SESSION['logged_on_user'] != 1) : ?>
       <li><a href="login.html">Se connecter</a></li>
       <?php endif;?>
-      <?php echo '<li><a href="my_account.php">Mon compte</a></li>' ?>
       <?php if ($_SESSION['logged_on_user'] == 1) : ?>
+      <li><a href="my_account.php">Mon compte</a></li>
       <li><a href="user/logout_user.php">Se deconnecter</a></li>
       <?php endif;?>
  <?php echo '</ul>

@@ -175,7 +175,6 @@ function reset_passwd()
         echo $e->getMessage();
     }
     if ($check && $check2) {
-        // prepare token
         date_default_timezone_set(UTC);
         $expFormat = mktime(
             date("H"),

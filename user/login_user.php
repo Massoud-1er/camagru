@@ -20,14 +20,27 @@ function find_id()
     if ($_POST['submit'] == "Se connecter" && $_POST["login"] && $_POST["password"]) {
         list($login, $password) = array($_POST["login"], $_POST["password"]);
         try {
-            // Prepare and query SQL for check
-            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password') AND verified = 'Y'");
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login'");
             $query->execute();
             $check = $query->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        if ($check) {
+        try {
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password')");
+            $query->execute();
+            $check2 = $query->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        try {
+            $query = $pdo->prepare("SELECT * FROM users WHERE login = '$login' AND password = PASSWORD('$password') AND verified = 'Y'");
+            $query->execute();
+            $check3 = $query->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        if ($check && $check2 && $check3) {
             $_SESSION['login'] = $login;
             $_SESSION["password"] = $password;
             $_SESSION['logged_on_user'] = 1;
@@ -44,9 +57,15 @@ function find_id()
                 echo("User is verified\n");
             } else {
                 $_SESSION['verified'] = 0;
-                echo("User is not verified\n");
+                
             }
         }
+        elseif (!$check)
+        $_SESSION['wronglogin'] = 1;
+        elseif (!$check2)
+            $_SESSION['wrongpw'] = 1;
+        elseif (!$check3)
+            $_SESSION['plslogin'] = 1; 
     }
     $pdo = null;
 ?>

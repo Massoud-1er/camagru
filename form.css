@@ -16,7 +16,6 @@ body {
 	position: relative;
 	z-index: 1;
 	background: #FFFFFF;
-	max-width: 20vw;
 	margin: 0 0 10vmin;
 	padding: 5vmin;
 	height: 50vh;
@@ -63,8 +62,10 @@ body {
 	font-size: 1.5vmin;
 }
 
-
 @media screen and (max-width: 1300px) {
+	body{
+        font-size:4vmin;
+    }
 	.form{
 		margin-left:-18vw;
 		z-index: 1;
@@ -83,4 +84,9 @@ body {
 		color: #b3b3b3;
 		font-size: 4vmin;
 	}
+	.form p {
+		font-size:4vmin;
+	}
+
+
     }
