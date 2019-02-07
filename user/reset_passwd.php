@@ -1,6 +1,6 @@
 <?php
 include('../config/connection.php');
-
+include('valid_passwd.php');
 date_default_timezone_set(UTC);
 
 if (isset($_GET["key"]) && isset($_GET["email"]) && isset($_GET["action"])
@@ -26,19 +26,32 @@ deactivated.</p>';
         $expDate = $check[0]['expDate'];
         if ($expDate >= $curDate) {
             ?>
-  <br />
-  <form method="post" action="" name="update">
+            <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Camagru</title>
+  <link rel = "stylesheet"
+    type = "text/css"
+    href = "../style.css" />
+    </head>
+<body>
+  <div class="form">
+  <form class ="login-form" method="post" action="" name="update">
   <input type="hidden" name="action" value="update" />
   <br /><br />
-  <label><strong>Veuillez entrer un nouveau mot de passe:</strong></label><br />
+  <label>Veuillez entrer un nouveau mot de passe:</label><br />
   <input type="password" name="pass1" maxlength="15" required />
   <br /><br />
-  <label><strong>Veuillez re-entrer votre nouveau mot de passe:</strong></label><br />
+  <label>Veuillez re-entrer votre nouveau mot de passe:</label><br />
   <input type="password" name="pass2" maxlength="15" required/>
   <br /><br />
   <input type="hidden" name="email" value="<?php echo $mail; ?>"/>
-  <input type="submit" value="Reset Password" />
-  </form>
+  <input id="login" type="submit" value="Reset Password" />
+  </form></div>
+        </body>
+    </html>
 <?php
         } else {
             $error .= "<h2>Link Expired</h2>
@@ -50,7 +63,7 @@ is valid only 24 hours (1 days after request).<br /><br /></p>";
     if ($error!="") {
         echo "<div class='error'>".$error."</div><br />";
     }
-} // isset email key validate end
+}
  
  
 if (isset($_POST["email"]) && isset($_POST["action"]) &&
@@ -76,21 +89,18 @@ SET password=PASSWORD('$pass1')
 WHERE mail= ?");
         $query2 = $pdo->prepare("DELETE FROM `password_reset` WHERE `mail`= ?");
         try {
-            // apply SQL line on database
             $query->execute([$mail]);
-            echo("Le mot de passe a bien ete change\n");
+            
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
         try {
-            // apply SQL line on database
             $query2->execute([$mail]);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        echo '<div class="error"><p>Congratulations! Your password has been updated successfully.</p>
-<p><a href="localhost:8100/login.html">
-Click here</a> to Login.</p></div><br />';
     }
+    echo("<div>Le mot de passe a bien ete change\n<br> <a href=\"//localhost:8100/login.html\">
+            Connecte toi ici !</a></div><br /></div>");
 }
 ?>

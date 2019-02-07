@@ -38,6 +38,7 @@ function my_last_pics()
     <div id="full_body">
         
         <div id="middle-col">
+        <?php if ($_SESSION['login']) : ?>
         <?php if (!$_POST['change']) : ?>
         <?php include ('account.html');?>
         <?php endif;?>
@@ -48,6 +49,7 @@ function my_last_pics()
             <div style="text-align:center;"><a  href="my_pics.php">Voir mes photos</a></div>
         <?php my_last_pics(); ?>
         <?php endif;?>
+<?php endif;?>
         </div>
     <div id="right-col">
     </div> 
