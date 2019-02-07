@@ -1,23 +1,20 @@
 <?php
 
 header('Location: '.$_SERVER['HOME'].'/galerie.php');
-// die;
 function add_com($idphoto, $photo_login)
 {
     session_start();
     include('../mail_com.php');
     include('../config/connection.php');
     list($login, $com) = array($_SESSION['login'], $_POST["com"]);
-    // Prepare and query SQL for check
     $query = $pdo->prepare("INSERT INTO `comments` (`id_photo`, `comments`, `login`) VALUES ('$idphoto', '$com', '$login')");
     try {
-        //insert com in commencts table
         $query->execute();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
     try {
-        $query = $pdo->prepare("SELECT mail FROM users WHERE login=?");
+        $query = $pdo->prepare("SELECT mail FROM users WHERE login=? AND notif = 'Y'");
         $query->execute([$photo_login]);
         $check = $query->fetchAll();
     } catch (PDOException $e) {

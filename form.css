@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
 body {
     background-color: white;
     max-width: 100%;
@@ -62,7 +66,88 @@ body {
 	color: #b3b3b3;
 	font-size: 1.5vmin;
 }
-
+#top_bar {
+	margin-top:2vh;
+	margin-left:2.5vw;
+	width: 95vw;
+	height: 11.5vh;
+  }
+  /*
+  **  MENU 
+  */
+	
+	#welcome {
+		margin-left:-7vw;
+		font-size:2.5vmin;
+		text-align:center;
+	}
+	.header {
+	  position: absolute;
+	  height:7vh;
+	  width: 95vw;
+	  border:1vmin;
+	  margin-top:2vh;
+	}
+  
+	body {
+		font-size: 2.5vmin;
+		font-family: sans-serif;
+		color: 0;
+	}
+	
+	a{
+		color: #5D6063;
+		text-decoration: none;
+		text-align: center;
+	}
+	.menu{
+	  margin-bottom:1vh;
+  
+	}
+	.menu > li {
+		display: inline;
+		margin-left:3vmin;
+	}
+	
+	.menu > li:last-of-type {
+		margin-right:0;
+	}
+	
+	.dropdown {
+		position: relative;
+	}
+	
+	.dropdown > span{
+		position: relative;
+		z-index: 2;
+		cursor: pointer;
+	}
+	.dropdown:hover .features-menu{
+		display: flex; 
+		flex-direction: column;
+		padding-top: 4.5vh;
+		position: absolute;
+		top: -1.5vh;
+		left: -1vw;
+		z-index: 1;
+	}
+  
+	.features-menu {
+		display: none;
+		width:12vw;
+	}
+  
+	
+	.features-menu li{
+		list-style-type: none;
+		list-style: none;
+		padding: 2vh 1vw 1vh 0vw;
+		width: 100%;
+	}
+	 
+	 ul li a:hover, ul li a:focus {
+	  color:rgb(0, 0, 0);
+	 }
 
 @media screen and (max-width: 1300px) {
 	.form{

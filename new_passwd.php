@@ -7,6 +7,9 @@
     <link rel="stylesheet" type="text/css" href="../form.css" />
 </head>
 <body>
+        <div id="top_bar">
+                <?php include ('top_bar.php');?>
+            </div>
     <div class="login-page">
         <div class="form">
             <form class="login-form" action="../user/acc_user.php" method="POST">

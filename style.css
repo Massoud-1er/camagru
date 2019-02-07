@@ -8,7 +8,7 @@
   }
 
 body {
-    background-color: white;
+    /* background-color: white; */
     width:100vw;
     height:100vh;
     overflow:hidden
@@ -27,7 +27,7 @@ h1 {
 }
 
 #footer {
-    background: white;
+    background: transparent;
     margin-top:2vh;
     margin-left:2.5vw;
     width: 95vw;
@@ -41,7 +41,7 @@ h1 {
 
 
 #middle-col {
-    background: white;
+    background: transparent;
     padding:2vmin;
     margin-top:5vh;
     width: 83vw;
@@ -75,6 +75,7 @@ h1 {
 */
   
   #welcome {
+      margin-left:-10vw;
       font-size:2.5vmin;
       text-align:center;
   }
@@ -202,6 +203,7 @@ h1 {
     padding: 1vmin 2vmin;
     font-size: 1.5vmin;
     margin-top:2vmin;
+    min-width: 15vw;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -501,11 +503,21 @@ h1 {
     height: 37vw; 
 }
 
+#main_pic{
+    margin-left:15vw;
+    width:50vw;
+    height:50vh;
+}
+#most_pic {
+    width:100%;
+}
+
 .my_pics {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5vmin;
+    margin-top:-10vh;
+    padding-bottom: 5vmin;
     width: 15vw;
     height: 20vh;   
 }
@@ -567,7 +579,7 @@ h1 {
     .form {
         z-index: 1;
         width:75vw;
-        height:25vh;
+        height:32vh;
         margin-top: 7vh;
         background: transparent;
         margin: auto;
@@ -598,6 +610,7 @@ h1 {
         cursor: pointer;
     }
     .message{
+        margin-top:6vh;
         font-size:4vmin;
     }
     .form p {

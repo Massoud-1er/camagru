@@ -1,10 +1,17 @@
 <?php
-header("Location: ../index.php");
+header('Location: ../my_account.php');
 function change_pw()
 {
+    session_start();
+    header('Location: ../my_account.php');
     include('../config/connection.php');
+    include('valid_passwd.php');
     list($login, $oldpw, $newpw) = array($_POST["login"], $_POST["oldpw"], $_POST["newpw"]);
     try {
+        if (!is_valid_password($newpw)){
+            $_SESSION['pb'] = 12;
+            exit();
+        }
         $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
         $query->execute([$login]);
         $check = $query->fetchAll();
@@ -15,6 +22,7 @@ function change_pw()
         echo $e->getMessage();
     }
     if ($check && $check2) {
+        print_r($check);
         $query = $pdo->prepare("UPDATE users
                 SET password=PASSWORD('$newpw')
                 WHERE login='$login'");
@@ -23,17 +31,84 @@ function change_pw()
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    } else if (!$check) {
+        $_SESSION['pb'] = 3;
+        exit();
+        // echo("Cet utilisateur n'existe pas\n");
+    } else if (!$check2) {
+        $_SESSION['pb'] = 4;
+        exit();
+        // echo("Le mot de passe ne correspond pas a cet utilisateur\n");
+    }
+    $pdo = null;
+}
+
+function change_login()
+{
+    session_start();
+    header('Location: ../my_account.php');
+    include('../config/connection.php');
+    list($login, $passwd, $newlogin) = array($_POST["login"], $_POST["passwd"], $_POST["newlogin"]);
+    try {
+        $query = $pdo->prepare("SELECT * FROM users WHERE login= ?");
+        $query->execute([$login]);
+        $check = $query->fetchAll();
+        $query = $pdo->prepare("SELECT * FROM users WHERE login=? AND password=PASSWORD('$passwd')");
+        $query->execute([$login]);
+        $check2 = $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    if ($check && $check2) {
+        $query = $pdo->prepare("UPDATE `users`
+                SET login='$newlogin'
+                WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `comments`
+                SET login='$newlogin'
+                WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `likes`
+        SET login='$newlogin'
+        WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        $query = $pdo->prepare("UPDATE `photos`
+SET login='$newlogin'
+WHERE login='$login'");
+        try {
+            $query->execute();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     } elseif (!$check) {
-        echo("Cet utilisateur n'existe pas\n");
+        $_SESSION['pb'] = 1;
+        exit();
+        // echo("Cet utilisateur n'existe pas\n");
     } elseif (!$check2) {
-        echo("Le mot de passe ne correspond pas a cet utilisateur\n");
+        $_SESSION['pb'] = 2;
+        exit();
+        // echo("Le mot de passe ne correspond pas a cet utilisateur\n");
     }
     $pdo = null;
 }
 
 function change_mail()
 {
+    session_start();
     include('../config/connection.php');
+    header('Location: ../my_account.php');
     list($login, $oldmail, $newmail) = array($_POST["login"], $_POST["oldmail"], $_POST["newmail"]);
     try {
         $query = $pdo->prepare("SELECT * FROM users WHERE login='$login'");
@@ -56,15 +131,21 @@ function change_mail()
             echo $e->getMessage();
         }
     } elseif (!$check) {
-        echo("Cet utilisateur n'existe pas\n");
+        $_SESSION['pb'] = 5;
+        exit();
+        // echo("Cet utilisateur n'existe pas\n");
     } elseif (!$check2) {
-        echo("L'adresse e-mail ne correspond pas a cet utilisateur'\n");
+        $_SESSION['pb'] = 6;
+        exit();
+        // echo("L'adresse e-mail ne correspond pas a cet utilisateur'\n");
     }
     $pdo = null;
 }
     
 function change_notif()
 {
+    session_start();
+    header('Location: ../my_account.php');
     include('../config/connection.php');
     list($login, $mail) = array($_POST["login"], $_POST["mail"]);
     try {
@@ -91,17 +172,25 @@ function change_notif()
             echo $e->getMessage();
         }
     } elseif (!$check) {
-        echo("Cet utilisateur n'existe pas.\n");
+        $_SESSION['pb'] = 7;
+        exit();
+        // echo("Cet utilisateur n'existe pas.\n");
     } elseif (!$check2) {
-        echo("Le mot de passe ne correspond pas a cet utilisateur.\n");
+        $_SESSION['pb'] = 8;
+        exit();
+        // echo("Le mot de passe ne correspond pas a cet utilisateur.\n");
     } elseif (!$check3) {
-        echo("Les notifications sont deja desactivees.\n");
+        $_SESSION['pb'] = 9;
+        exit();
+        // echo("Les notifications sont deja desactivees.\n");
     }
     $pdo = null;
 }
 
 function reset_passwd()
 {
+    session_start();
+    header('Location: ../my_account.php');
     include('../config/connection.php');
     include('mail_reset.php');
     list($login, $mail) = array($_POST["login"], $_POST["mail"]);
@@ -136,26 +225,30 @@ function reset_passwd()
             $query->execute();
             mail_reset($key, $mail);
             // header("Location: ../index.php");
-
             echo("Un email pour reinitialiser votre mot de passe vous a bien ete envoye\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     } elseif (!$check) {
-        echo("Cet utilisateur n'existe pas.\n");
+        $_SESSION['pb'] = 10;
+        exit();
+        // echo("Cet utilisateur n'existe pas.\n");
     } elseif (!$check2) {
-        echo("L'adresse e-mail ne correspond pas.\n");
+        $_SESSION['pb'] = 11;
+        exit();
+        // echo("L'adresse e-mail ne correspond pas.\n");
     }
     $pdo = null;
 }
 
 if ($_POST["submit"] == "Modifier son mot de passe" && $_POST["login"] && $_POST["newpw"] && $_POST["oldpw"]) {
     change_pw();
+} elseif ($_POST["submit"] == "Modifier son login" && $_POST["login"] && $_POST["newlogin"] && $_POST["passwd"]) {
+    change_login();
 } elseif ($_POST["submit"] == "Modifier son adresse e-mail" && $_POST["login"] && $_POST["oldmail"] && $_POST["newmail"]) {
     change_mail();
 } elseif ($_POST["submit"] == "Desactiver les notifcations" && $_POST["login"] && $_POST["mail"]) {
     change_notif();
-}
-else if ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]){
+} elseif ($_POST["submit"] == "Reinitialiser votre mot de passe" && $_POST["login"] && $_POST["mail"]) {
     reset_passwd();
 }
