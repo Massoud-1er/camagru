@@ -1,5 +1,6 @@
 <?php
 session_start();
+print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,8 +13,22 @@ session_start();
         href = "form.css" />
 	</head>
 	<body>
-		<div class="login-page">
-			
+		<div class="login-page">			
+				<?php 
+			    switch($_SESSION['crea']) {
+					case 1:
+						echo "<div><h1>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</div>";
+						break;
+					case 2:
+						echo "<div><h1>L'addresse email est non-valide</div></h1>";
+						break;
+					case 3:
+						echo "<div><h1>Ce nom d'utilisateur est deja utilise</h1></div>";
+						break;
+					case 4:
+						echo "<div><h1>Cette adresse e-mail est deja utilisee</h1></div>";
+						break;
+				};?>
 			<div class="form">
 				<form class="login-form" action="user/create_user.php" method="POST">
 					<p>Nom d'utilisateur : </p><input type="text" name="login"/>
@@ -21,17 +36,6 @@ session_start();
                     <p>Adresse e-mail : </p><input type="text" name="email"/>
 					<input id = "login" type="submit" name="submit" value ="Creer un compte">
 				</form>
-				<?php 
-			    switch($_SESSION['crea']) {
-					case 1:
-						echo "<div><h1>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</div>";
-					case 2:
-						echo "<div><h1>L'addresse email est non-valide</div></h1>";
-					case 3:
-						echo "<div><h1>Ce nom d'utilisateur est deja utilise</h1></div>";
-					case 4:
-						echo "<div><h1>Cette adresse e-mail est deja utilisee</h1></div>";
-				};?>
 			</div>
 		</div>
 	</body>

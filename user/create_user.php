@@ -2,15 +2,16 @@
 function create_user(){
     //connection to SQL through PDO
     session_start();
+    if (!isset($_SESSION['crea']))
+        header('Location: ../my_account.php');
+    else
+        header('Location: ../create.php');
     include('../config/connection.php');
     include('valid_passwd.php');
     include('valid_mail.php');
     include('verify_user.php');
     // check Post correct
-    if (!isset($_SESSION['crea']))
-        header('Location: ../index.php');
-    else
-        header('Location: ../create.php');
+
 
     if ($_POST["submit"] == "Creer un compte" && $_POST["login"] && $_POST["password"] && $_POST["email"]) {
         // create var of user and pass and mail
@@ -44,13 +45,13 @@ function create_user(){
             try {
                 // apply SQL line on database
                 $query->execute();
-                echo("L'utilisateur a bien été crée. Vous allez recevoir un email de confirmation à l'adresse indiquee\n");
+                // echo("L'utilisateur a bien été crée. Vous allez recevoir un email de confirmation à l'adresse indiquee\n");
                 verify_user($mail, $hash);
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
-            $_SESSION['crea'] = 0;
-            header('location: ../index.php');
+            if (isset($_SESSION['crea']))
+                unset($_SESSION['crea']);
         } elseif ($check != null) {
             $_SESSION['crea'] = 3;
             // echo("Ce nom d'utilisateur est deja utilise\n");
@@ -58,9 +59,9 @@ function create_user(){
             $_SESSION['crea'] = 4;
             // echo("Cette adresse e-mail est deja utilisee\n");
         }
-        header('location: ../create.php');
     }
     $pdo = null;
 }
 create_user();
+
 ?>
