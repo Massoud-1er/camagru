@@ -8,7 +8,7 @@
   }
 
 body {
-    background-color: white;
+    /* background-color: white; */
     width:100vw;
     height:100vh;
     overflow:hidden
@@ -27,7 +27,7 @@ h1 {
 }
 
 #footer {
-    background: white;
+    background: transparent;
     margin-top:2vh;
     margin-left:2.5vw;
     width: 95vw;
@@ -41,7 +41,7 @@ h1 {
 
 
 #middle-col {
-    background: white;
+    background: transparent;
     padding:2vmin;
     margin-top:5vh;
     width: 83vw;
@@ -500,6 +500,15 @@ h1 {
     margin-right: auto;
     width: 50vw;
     height: 37vw; 
+}
+
+#main_pic{
+    margin-left:15vw;
+    width:50vw;
+    height:50vh;
+}
+#most_pic {
+    width:100%;
 }
 
 .my_pics {

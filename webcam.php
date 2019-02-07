@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['login'])){
-    header("Location: login.html");
+    header("Location: login.php");
  }
 function del_old_edit()
 {
@@ -99,7 +99,7 @@ function choose_filter()
 <style>
 </style>
 </head>
-  
+
 <body>
 <div id="top_bar">
     <?php include('top_bar.php');?>

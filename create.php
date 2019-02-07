@@ -1,6 +1,5 @@
 <?php
 session_start();
-print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,8 +12,11 @@ print_r($_SESSION);
         href = "form.css" />
 	</head>
 	<body>
+	<div id="top_bar">
+    <?php include ('top_bar.php');?>
+</div>
 		<div class="login-page">			
-				<?php 
+				<?php
 			    switch($_SESSION['crea']) {
 					case 1:
 						echo "<div><h1>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</div>";
@@ -28,7 +30,8 @@ print_r($_SESSION);
 					case 4:
 						echo "<div><h1>Cette adresse e-mail est deja utilisee</h1></div>";
 						break;
-				};?>
+				};
+				unset($_SESSION['crea']);?>
 			<div class="form">
 				<form class="login-form" action="user/create_user.php" method="POST">
 					<p>Nom d'utilisateur : </p><input type="text" name="login"/>

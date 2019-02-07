@@ -38,6 +38,11 @@ function my_last_pics()
     <div id="full_body">
         
         <div id="middle-col">
+        <?php if ($_SESSION['mail_sent']) : ?>
+            <div style="margin-top:10vh;"><h1 style="color:black;">L'utilisateur a bien été crée. Vous allez recevoir un email de confirmation à l'adresse indiquee</h1></div>
+        <?php unset($_SESSION['mail_sent']); ?>
+        <?php endif; ?>
+        <?php if ($_SESSION['login']) : ?>
         <?php if (!$_POST['change']) : ?>
         <?php include ('account.html');?>
         <?php endif;?>
@@ -48,6 +53,7 @@ function my_last_pics()
             <div style="text-align:center;"><a  href="my_pics.php">Voir mes photos</a></div>
         <?php my_last_pics(); ?>
         <?php endif;?>
+<?php endif;?>
         </div>
     <div id="right-col">
     </div> 

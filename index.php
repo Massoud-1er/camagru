@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include('get_most_like.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,8 +18,7 @@ session_start();
 </div>
 <div id="full_body">
     <div id="middle-col">
-            <!-- <?php include ('comments/like.html');?>
-            <?php include ('comments/write_comment.html');?> -->
+            <?php get_most_like(); ?>
                                 </div>
     <div id="right-col">
         <?php include('get_mini.php');?>
