@@ -19,16 +19,16 @@ session_start();
 				<?php
 			    switch($_SESSION['crea']) {
 					case 1:
-						echo "<div><h1>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</div>";
+						echo "<div><h2>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</h2></div>";
 						break;
 					case 2:
-						echo "<div><h1>L'addresse email est non-valide</div></h1>";
+						echo "<div><h2>L'addresse email est non-valide</h2></div>";
 						break;
 					case 3:
-						echo "<div><h1>Ce nom d'utilisateur est deja utilise</h1></div>";
+						echo "<div><h2>Ce nom d'utilisateur est deja utilise</h2></div>";
 						break;
 					case 4:
-						echo "<div><h1>Cette adresse e-mail est deja utilisee</h1></div>";
+						echo "<div><h2>Cette adresse e-mail est deja utilisee</h2></div>";
 						break;
 				};
 				unset($_SESSION['crea']);?>
