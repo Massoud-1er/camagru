@@ -11,16 +11,6 @@ function create_user(){
         header('Location: ../index.php');
     else
         header('Location: ../create.php');
-    // switch($_SESSION['crea']) {
-    //     case 1:
-    //         echo "<div><h1>Le mot de passe doit contenir 2 caracteres speciaux et/ou majuscules et avoir 8 caracteres</div>";
-    //     case 2:
-    //         echo "<div><h1>L'addresse email est non-valide</div></h1>";
-    //     case 3:
-    //         echo "<div><h1>Ce nom d'utilisateur est deja utilise</h1></div>";
-    //     case 4:
-    //         echo "<div><h1>Cette adresse e-mail est deja utilisee</h1></div>";
-    // }
 
     if ($_POST["submit"] == "Creer un compte" && $_POST["login"] && $_POST["password"] && $_POST["email"]) {
         // create var of user and pass and mail
@@ -59,7 +49,8 @@ function create_user(){
             } catch (PDOException $e) {
                 echo $e->getMessage();
             }
-            
+            $_SESSION['crea'] = 0;
+            header('location: ../index.php');
         } elseif ($check != null) {
             $_SESSION['crea'] = 3;
             // echo("Ce nom d'utilisateur est deja utilise\n");
@@ -67,7 +58,7 @@ function create_user(){
             $_SESSION['crea'] = 4;
             // echo("Cette adresse e-mail est deja utilisee\n");
         }
-        
+        header('location: ../create.php');
     }
     $pdo = null;
 }

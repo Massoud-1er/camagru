@@ -17,7 +17,7 @@ function del_old_photo()
 function getimg()
 {
     if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
-        print_r($_POST);
+
         del_old_edit();
         $_SESSION['photo'] == 1;
         $img = $_POST['data_img'];
