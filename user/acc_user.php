@@ -22,7 +22,6 @@ function change_pw()
         echo $e->getMessage();
     }
     if ($check && $check2) {
-        print_r($check);
         $query = $pdo->prepare("UPDATE users
                 SET password=PASSWORD('$newpw')
                 WHERE login='$login'");
@@ -31,14 +30,13 @@ function change_pw()
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    $_SESSION['good'] = 1;
     } else if (!$check) {
         $_SESSION['pb'] = 3;
         exit();
-        // echo("Cet utilisateur n'existe pas\n");
     } else if (!$check2) {
         $_SESSION['pb'] = 4;
         exit();
-        // echo("Le mot de passe ne correspond pas a cet utilisateur\n");
     }
     $pdo = null;
 }
@@ -92,14 +90,13 @@ WHERE login='$login'");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        $_SESSION['good'] = 2;
     } elseif (!$check) {
         $_SESSION['pb'] = 1;
         exit();
-        // echo("Cet utilisateur n'existe pas\n");
     } elseif (!$check2) {
         $_SESSION['pb'] = 2;
         exit();
-        // echo("Le mot de passe ne correspond pas a cet utilisateur\n");
     }
     $pdo = null;
 }
@@ -126,18 +123,16 @@ function change_mail()
                 WHERE login='$login'");
         try {
             $query->execute();
-            echo("L'adresse e-mail a bien ete modifie\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        $_SESSION['good'] = 3;
     } elseif (!$check) {
         $_SESSION['pb'] = 5;
         exit();
-        // echo("Cet utilisateur n'existe pas\n");
     } elseif (!$check2) {
         $_SESSION['pb'] = 6;
         exit();
-        // echo("L'adresse e-mail ne correspond pas a cet utilisateur'\n");
     }
     $pdo = null;
 }
@@ -167,22 +162,19 @@ function change_notif()
                 WHERE login='$login'");
         try {
             $query->execute();
-            echo("Vous ne recevrez plus de notifications par mail\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+        $_SESSION['good'] = 4;
     } elseif (!$check) {
         $_SESSION['pb'] = 7;
         exit();
-        // echo("Cet utilisateur n'existe pas.\n");
     } elseif (!$check2) {
         $_SESSION['pb'] = 8;
         exit();
-        // echo("Le mot de passe ne correspond pas a cet utilisateur.\n");
     } elseif (!$check3) {
         $_SESSION['pb'] = 9;
         exit();
-        // echo("Les notifications sont deja desactivees.\n");
     }
     $pdo = null;
 }
@@ -223,7 +215,6 @@ function reset_passwd()
         try {
             $query->execute();
             mail_reset($key, $mail);
-            // header("Location: ../index.php");
             echo("Un email pour reinitialiser votre mot de passe vous a bien ete envoye\n");
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -231,11 +222,9 @@ function reset_passwd()
     } elseif (!$check) {
         $_SESSION['pb'] = 10;
         exit();
-        // echo("Cet utilisateur n'existe pas.\n");
     } elseif (!$check2) {
         $_SESSION['pb'] = 11;
         exit();
-        // echo("L'adresse e-mail ne correspond pas.\n");
     }
     $pdo = null;
 }
