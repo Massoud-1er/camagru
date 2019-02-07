@@ -5,7 +5,7 @@ echo '<p id= "welcome"><a href="index.php">Camagru</a></p>
                             <li class="dropdown"><span>Voir mon compte</span>
   <ul class="features-menu">' ?>
       <?php if ($_SESSION['logged_on_user'] != 1) : ?>
-      <li><a href="login.html">Se connecter</a></li>
+      <li><a href="login.php">Se connecter</a></li>
       <?php endif;?>
       <?php if ($_SESSION['logged_on_user'] == 1) : ?>
       <li><a href="my_account.php">Mon compte</a></li>

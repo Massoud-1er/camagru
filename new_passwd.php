@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Reinitialiser le mot de passe</title>
-    <link rel="stylesheet" type="text/css" href="../form.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body>
+        <div id="top_bar">
+                <?php include ('top_bar.php');?>
+            </div>
     <div class="login-page">
         <div class="form">
             <form class="login-form" action="../user/acc_user.php" method="POST">

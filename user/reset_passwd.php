@@ -94,7 +94,7 @@ WHERE mail= ?");
             echo $e->getMessage();
         }
     }
-    echo("<div>Le mot de passe a bien ete change\n<br> <a href=\"//localhost:8100/login.html\">
+    echo("<div>Le mot de passe a bien ete change\n<br> <a href=\"//localhost:8100/login.php\">
             Connecte toi ici !</a></div><br /></div>");
 }
 ?>

@@ -1,27 +1,22 @@
 <?php
 session_start();
 if(!isset($_SESSION['login'])){
-    header("Location: login.html");
+    header("Location: login.php");
  }
-
 function del_old_edit()
 {
     include_once('photo/add_montage.php');
     if (file_exists("uploads/".find_id().".png"))
         unlink("uploads/".find_id().".png");
  }
-
 function del_old_photo()
 {
     if (file_exists("uploads/photo.png"))
         unlink("uploads/photo.png");
 }
-
 function getimg()
 {
-    if ($_POST['data_img'] && $_POST['getimg'] && $_POST['getimg'] == "getimg"){
-    print_r($_POST);
-        
+    if (isset($_POST['data_img']) && isset($_POST['getimg']) && $_POST['getimg'] == "getimg"){
         del_old_edit();
         $_SESSION['photo'] == 1;
         $img = $_POST['data_img'];
@@ -32,7 +27,6 @@ function getimg()
         echo "<div><img id=\"cam_pic\" src=\"/uploads/photo.png\"></div>";
     }
 }
-
 function upload()
 {
     $target_dir = "uploads/";
@@ -73,7 +67,6 @@ function upload()
     echo "<div><img id=\"up_img\" src=\"/uploads/photo.png\"></div>";
     }
 }
-
 function choose_filter()
 {
     include_once('photo/add_montage.php');
@@ -95,7 +88,6 @@ function choose_filter()
     }
 }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -107,7 +99,7 @@ function choose_filter()
 <style>
 </style>
 </head>
-  
+
 <body>
 <div id="top_bar">
     <?php include('top_bar.php');?>
@@ -118,14 +110,15 @@ function choose_filter()
     <div id="container">
         <video autoplay="true" id="videoElement"></video>
     </div>
-    <?php print_r($_POST);getimg(); ?>
+    <?php getimg(); ?>
     <?php choose_filter(); ?>
     <?php upload(); ?>
     <form action="" method="post">
     <input type="submit" name="save" class="insert_save" value="save"></form>
     <form id ="post_cam" method="post" action=""> 
-    <input class ="insert_take" name="getimg" value="getimg" type="submit" onclick='myFunction()'>
-    <input class="data_img" type="hidden" name="data_img" value="">
+    <input class ="insert_take" name="getimg" value="Prendre une photo" type="submit" onclick="myFunction()">
+            <input id="data_img" type="hidden" name="data_img" value="">
+            <input type="hidden" name="getimg" value="getimg">
     </form>
     <br><br><br><br><br>
     <canvas id="CANVAS" name="canvas" width="500" height="375"></canvas>
@@ -133,7 +126,7 @@ function choose_filter()
     <form method="post" action="" enctype="multipart/form-data"> 
     <input class ="insert" type="file" name="fileToUpload" id="fileToUpload">
     <input class ="insert" type="submit" value="Upload" name="submit">
-    <input class="data_img" type="hidden" name="submit" value="Upload Image">
+    <input type="hidden" name="submit" value="Upload Image">
     </form>
     
 </div>
@@ -170,4 +163,3 @@ function choose_filter()
     <script src="webcam.js"></script>
 </body>
 </html>
-

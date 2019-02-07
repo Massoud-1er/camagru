@@ -36,7 +36,6 @@ h1 {
 
 #full_body{
     margin-top:1.5vh;
-    margin-left:2.5vw;
 }
 
 
@@ -75,7 +74,7 @@ h1 {
 */
   
   #welcome {
-      margin-left:-2.5vw;
+      margin-left:-10vw;
       font-size:2.5vmin;
       text-align:center;
   }
@@ -150,8 +149,6 @@ h1 {
 /*
 **  FORM CSS
 */
-
-
 .login-form {
     width:20vw;
     height:20vh;
@@ -163,7 +160,7 @@ h1 {
 	z-index: 1;
 	background: #FFFFFF;
     width:15vw;
-	margin: auto;
+    margin: auto;
     padding: 1.5vmin;
     text-align: center;
 }
