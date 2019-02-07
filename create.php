@@ -9,7 +9,7 @@ session_start();
 		<title>Creer un compte</title>
         <link rel = "stylesheet"
         type = "text/css"
-        href = "style.css" />
+        href = "form.css" />
 	</head>
 	<body>
 	<div id="top_bar">
