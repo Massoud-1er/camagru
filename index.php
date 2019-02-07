@@ -19,6 +19,7 @@ include('get_most_like.php');
 <div id="full_body">
     <div id="middle-col">
             <?php get_most_like(); ?>
+            <?php include('check_login.php');?>
                                 </div>
     <div id="right-col">
         <?php include('get_mini.php');?>

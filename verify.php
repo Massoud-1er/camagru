@@ -3,7 +3,7 @@ session_start();
 
 function verify_hash()
 {
-    include('../config/connection.php');
+    include('config/connection.php');
     if (isset($_GET['email']) && !empty($_GET['email']) and isset($_GET['hash']) && !empty($_GET['hash'])) {
         $mail = $_GET['email'];
         $hash = $_GET['hash'];
@@ -42,24 +42,16 @@ function verify_hash()
     <title>Verification</title>
     <link rel = "stylesheet"
     type = "text/css"
-    href = "style.css" />
+    href = "../style.css" />
 </head>
 <body>
     <div id="top_bar">
-    <?php include ('../top_bar.php');?>
+    <?php include ('top_bar.php');?>
 </div>
     <div id="full_body">
-        
         <div id="middle-col">
         <?php verify_hash(); ?>
                                 </div>
-        <!-- <div id="left-col">
-            <a href="#">Categorie 1</a>
-            <a href="#">Categorie 2</a>
-            <a href="#">Categorie 3</a>
-            <a href="#">Categorie 4</a>
-            <a href="#">Categorie 5</a>
-    </div> -->
                                 </div>         
     <div id="right-col">
     </div> 

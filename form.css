@@ -20,7 +20,6 @@ body {
 	position: relative;
 	z-index: 1;
 	background: #FFFFFF;
-	max-width: 20vw;
 	margin: 0 0 10vmin;
 	padding: 5vmin;
 	height: 50vh;
@@ -168,4 +167,13 @@ body {
 		color: #b3b3b3;
 		font-size: 4vmin;
 	}
-    }
+	body{
+		font-size:4vmin;
+	}
+	.form p {
+		font-size:4vmin;
+	}
+	.form #login {
+		font-size:3vmin;
+	}
+}
